@@ -632,73 +632,73 @@
                                         >
                                             Room
                                         </a>
-                                        
+
                                         <a
                                             href="https://sketchfab.com/prathvisinght3?utm_medium=embed&utm_campaign=share-popup&utm_content=ede0719b3b4b45a783b347a662cbcdb1"
                                             target="_blank"
                                             rel="nofollow noopener noreferrer"
                                             class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
                                         >
-                                            
+
                                         </a>
-                                        
+
                                         <a
                                             href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=ede0719b3b4b45a783b347a662cbcdb1"
                                             target="_blank"
                                             rel="nofollow noopener noreferrer"
                                             class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
                                         >
-                                          
+
                                         </a>
                                     </p>
                                 </div>
 
-            <div className="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
-                {/* Sketchfab iframe for the 3D model */}
-                <iframe
-                    title="classic black muscle car"
-                    frameBorder="0"
-                    allowFullScreen
-                    mozallowfullscreen="true"
-                    webkitallowfullscreen="true"
-                    allow="autoplay; fullscreen; xr-spatial-tracking"
-                    xr-spatial-tracking="true"
-                    execution-while-out-of-viewport="true"
-                    execution-while-not-rendered="true"
-                    web-share="true"
-                    src="https://sketchfab.com/models/91c77f0ab26940548ccdedeb2be6dde4/embed"
-                    className="w-full h-full rounded-xl"
-                ></iframe>
-                
-                <p className="text-sm font-normal text-gray-400 mt-2 p-2 text-center">
-                    <a
-                        href="https://sketchfab.com/3d-models/classic-black-muscle-car-91c77f0ab26940548ccdedeb2be6dde4?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                        classic black muscle car
-                    </a>
-                    
-                    <a
-                        href="https://sketchfab.com/prathvisinght3?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                       
-                    </a>
-                   
-                    <a
-                        href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                      
-                    </a>
-                </p>
-            </div>
+                                <div className="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
+                                    {/* Sketchfab iframe for the 3D model */}
+                                    <iframe
+                                        title="classic black muscle car"
+                                        frameBorder="0"
+                                        allowFullScreen
+                                        mozallowfullscreen="true"
+                                        webkitallowfullscreen="true"
+                                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                                        xr-spatial-tracking="true"
+                                        execution-while-out-of-viewport="true"
+                                        execution-while-not-rendered="true"
+                                        web-share="true"
+                                        src="https://sketchfab.com/models/91c77f0ab26940548ccdedeb2be6dde4/embed"
+                                        className="w-full h-full rounded-xl"
+                                    ></iframe>
+
+                                    <p className="text-sm font-normal text-gray-400 mt-2 p-2 text-center">
+                                        <a
+                                            href="https://sketchfab.com/3d-models/classic-black-muscle-car-91c77f0ab26940548ccdedeb2be6dde4?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                            classic black muscle car
+                                        </a>
+
+                                        <a
+                                            href="https://sketchfab.com/prathvisinght3?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+
+                                        </a>
+
+                                        <a
+                                            href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+
+                                        </a>
+                                    </p>
+                                </div>
 
                                 <div class="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
                                     <iframe
@@ -839,50 +839,72 @@
         };
 
         // Contact Section Component
+        // Contact Section Component (Updated with custom form)
         const Contact = () => {
-            React.useEffect(() => {
-                const script = document.createElement("script");
-                script.src = "https://tally.so/widgets/embed.js";
-                script.onload = script.onerror = () => {
-                    if (typeof Tally !== 'undefined') {
-                        Tally.loadEmbeds();
+            const [success, setSuccess] = React.useState(false);
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch("https://script.google.com/macros/s/AKfycbx7s5QfFHwHTdd7piOza_1TtoZh8UOH8oOT5ttiiEAn6Zy_NgQDQrhniHjc43WAFUI/exec", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    const result = await response.text();
+                    if (result === "Success") {
+                        setSuccess(true);
+                        form.reset();
                     } else {
-                        document.querySelectorAll("iframe[data-tally-src]:not([src])")
-                            .forEach(e => { e.src = e.dataset.tallySrc; });
+                        alert("Server error: " + result);
                     }
-                };
-                document.body.appendChild(script);
-            }, []);
+                } catch (error) {
+                    alert("Submission failed. Try again later.");
+                    console.error(error);
+                }
+            };
 
             return (
                 <section id="contact" className="py-24 px-4 bg-gray-50 text-gray-900 min-h-screen flex flex-col items-center">
-                    <div className="container mx-auto max-w-5xl bg-white p-12 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-up w-full flex flex-col items-center">
-                        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-16">Let's Connect & Collaborate</h2>
-                        <p className="text-lg text-gray-700 text-center mb-10 max-w-2xl mx-auto">
-                            I'm always open to discussing new opportunities, collaborations, or simply sharing insights. Feel free to reach out!
+                    <div className="container mx-auto max-w-xl bg-white p-10 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-up w-full">
+                        <h2 className="text-4xl font-extrabold text-center text-blue-600 mb-8">Let's Connect & Collaborate</h2>
+                        <p className="text-center text-gray-600 mb-10">
+                            I'm always open to discussing opportunities or just chatting tech. Reach out below!
                         </p>
-                        <div
-                            style={{
-                                width: "180px",
-                                height: "50px",
-                                background: "white",
-                                borderRadius: "4px",
-                                position: "absolute",
-                                bottom: "60px",
-                                right: "55px"
-                            }}
-                        ></div>
-                        <iframe
-                            data-tally-src="https://tally.so/embed/wLNq5v?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                            loading="lazy"
-                            width="100%"
-                            height="276"
-                            frameBorder="0"
-                            marginHeight="0"
-                            marginWidth="0"
-                            title="Lets Connect and Collaborate"
-                            className="rounded-lg shadow-md"
-                        ></iframe>
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="name" className="block mb-1 font-semibold text-gray-700">Name</label>
+                                <input type="text" id="name" name="name" required
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                            </div>
+                            <div>
+                                <label htmlFor="email" className="block mb-1 font-semibold text-gray-700">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                            </div>
+                            <div>
+                                <label htmlFor="phone" className="block mb-1 font-semibold text-gray-700">Phone</label>
+                                <input type="tel" id="phone" name="phone" required
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                            </div>
+                            <div>
+                                <label htmlFor="message" className="block mb-1 font-semibold text-gray-700">Message</label>
+                                <textarea id="message" name="message" rows="4" required
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                            </div>
+                            <button type="submit"
+                                className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Submit
+                            </button>
+                            {success && (
+                                <div className="text-green-600 text-center font-semibold mt-4">
+                                    Message sent successfully!
+                                </div>
+                            )}
+                        </form>
                     </div>
 
                     {/* Social Links Section */}
