@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathvi - The Polymath's Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        /* Custom CSS for animations */
+        @keyframes fadeInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .blinking-cursor {
+            animation: blink 0.7s infinite;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInFromBottom 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInFromLeft 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInFromRight 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Staggered animation delays */
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .delay-800 {
+            animation-delay: 0.8s;
+        }
+
+        .delay-900 {
+            animation-delay: 0.9s;
+        }
+
+        .delay-1000 {
+            animation-delay: 1s;
+        }
+
+        /* Ensure smooth scrolling for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 text-gray-900 font-inter antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // React components are defined here.
+        // All state management and component logic from the React code is preserved.
+
+        // Main App component
+        const App = () => {
+            // State to manage the current active section for navigation (for highlighting in navbar)
+            const [activeSection, setActiveSection] = React.useState('home');
+
+            // Function to handle navigation clicks and smooth scrolling
+            const navigateTo = (sectionId) => {
+                setActiveSection(sectionId);
+                document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            // Effect to update activeSection based on scroll position for navbar highlighting
+            React.useEffect(() => {
+                const handleScroll = () => {
+                    const sections = ['home', 'about-me', 'technical-prowess', 'creative-corner', 'leadership-communication', 'contact'];
+                    let currentActive = 'home';
+                    for (let i = sections.length - 1; i >= 0; i--) {
+                        const section = document.getElementById(sections[i]);
+                        if (section) {
+                            const rect = section.getBoundingClientRect();
+                            // Check if the section is mostly in view (e.g., more than 20% from top)
+                            if (rect.top <= window.innerHeight * 0.2 && rect.bottom >= window.innerHeight * 0.2) {
+                                currentActive = sections[i];
+                                break;
+                            }
+                        }
+                    }
+                    setActiveSection(currentActive);
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 text-gray-900 font-inter antialiased">
+                    {/* Navigation Bar */}
+                    <Navbar navigateTo={navigateTo} activeSection={activeSection} />
+
+                    {/* Main content area */}
+                    <main className="pt-20"> {/* Add padding-top to account for fixed navbar */}
+                        <Home navigateTo={navigateTo} />
+                        <AboutMe />
+                        <TechnicalProwess />
+                        <CreativeCorner />
+                        <LeadershipCommunication />
+                        <Contact />
+                    </main>
+
+                    {/* Footer */}
+                    <Footer />
+                </div>
+            );
+        };
+
+        // Navbar Component
+        const Navbar = ({ navigateTo, activeSection }) => {
+            const [isOpen, setIsOpen] = React.useState(false);
+
+            const navItems = [
+                { id: 'home', name: 'Home' },
+                { id: 'about-me', name: 'About Me' },
+                { id: 'technical-prowess', name: 'Technical Prowess' },
+                { id: 'creative-corner', name: 'Creative Corner' },
+                { id: 'leadership-communication', name: 'Leadership & Communication' },
+                { id: 'contact', name: 'Contact' },
+            ];
+
+            return (
+                <nav className="fixed top-0 left-0 w-full bg-white bg-opacity-80 backdrop-blur-md z-50 shadow-lg border-b border-blue-200">
+                    <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+                        {/* Logo/Site Title */}
+                        <div className="flex items-center space-x-2">
+                            {/* Using a simple SVG icon for the logo - abstract tech/creativity */}
+                            <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                            <span className="text-2xl font-extrabold text-blue-600 tracking-wider">Prathvi</span>
+                        </div>
+
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex space-x-8">
+                            {navItems.map(item => (
+                                <button
+                                    key={item.id}
+                                    onClick={() => navigateTo(item.id)}
+                                    className={`text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium relative group
+                                        ${activeSection === item.id ? 'text-blue-600 font-semibold' : ''}`}
+                                >
+                                    {item.name}
+                                    {/* Active indicator */}
+                                    <span className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transform -translate-x-1/2 group-hover:w-full transition-all duration-300
+                                        ${activeSection === item.id ? 'w-full' : ''}`}></span>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Mobile Menu Button */}
+                        <div className="md:hidden">
+                            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-700 focus:outline-none focus:text-blue-600">
+                                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    {isOpen ? (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    ) : (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                    )}
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Mobile Navigation Menu */}
+                    {isOpen && (
+                        <div className="md:hidden bg-white pb-4 border-t border-blue-200">
+                            <div className="flex flex-col items-center space-y-3 px-6">
+                                {navItems.map(item => (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => { navigateTo(item.id); setIsOpen(false); }}
+                                        className={`block w-full text-center py-3 text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors duration-300 rounded-md
+                                            ${activeSection === item.id ? 'bg-gray-100 text-blue-600 font-semibold' : ''}`}
+                                    >
+                                        {item.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        // Home Section Component
+        const Home = ({ navigateTo }) => {
+            // State for the typewriter effect
+            const [currentTaglineIndex, setCurrentTaglineIndex] = React.useState(0);
+            const [currentText, setCurrentText] = React.useState('');
+            const [isDeleting, setIsDeleting] = React.useState(false);
+            const [typingSpeed, setTypingSpeed] = React.useState(150);
+
+            const taglines = [
+                "Python Developer", "Web Innovator", "DevOps Enthusiast", "AI Explorer", "Game Creator", "3D Artist", "Strategic Trader", "Polymath"
+            ];
+
+            React.useEffect(() => {
+                let timer;
+                const handleTyping = () => {
+                    const fullText = taglines[currentTaglineIndex];
+                    if (isDeleting) {
+                        setCurrentText(fullText.substring(0, currentText.length - 1));
+                        setTypingSpeed(75); // Faster deleting
+                    } else {
+                        setCurrentText(fullText.substring(0, currentText.length + 1));
+                        setTypingSpeed(150); // Slower typing
+                    }
+
+                    if (!isDeleting && currentText === fullText) {
+                        setTypingSpeed(1500); // Pause at end of typing
+                        setIsDeleting(true);
+                    } else if (isDeleting && currentText === '') {
+                        setIsDeleting(false);
+                        setCurrentTaglineIndex((prev) => (prev + 1) % taglines.length);
+                        setTypingSpeed(200); // Pause before typing next
+                    }
+                };
+
+                timer = setTimeout(handleTyping, typingSpeed);
+
+                return () => clearTimeout(timer);
+            }, [currentText, isDeleting, typingSpeed, currentTaglineIndex, taglines]);
+
+            return (
+                <section id="home" className="relative h-screen flex items-center justify-center text-center overflow-hidden p-4">
+                    {/* Subtle background gradient overlay */}
+                    <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-100 to-gray-200 opacity-60"></div>
+
+                    {/* Hero Content */}
+                    <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 bg-white bg-opacity-70 rounded-3xl shadow-2xl border border-blue-300 backdrop-blur-sm">
+                        <h1 className="text-6xl md:text-8xl font-extrabold text-gray-900 leading-tight mb-6 animate-fade-in-up">
+                            Prathvi Singh Thakur
+                        </h1>
+                        <p className="text-2xl md:text-4xl text-blue-600 font-mono mb-10 h-10">
+                            <span className="typewriter-text">{currentText}</span>
+                            <span className="blinking-cursor">_</span>
+                        </p>
+                        <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-2xl mx-auto animate-fade-in-up delay-300">
+                            Crafting innovative solutions across diverse domains, from code to canvas.
+                        </p>
+                        <div className="flex flex-col sm:flex-row justify-center space-y-5 sm:space-y-0 sm:space-x-8 animate-fade-in-up delay-500">
+                            <button
+                                onClick={() => navigateTo('technical-prowess')}
+                                className="px-10 py-4 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-lg"
+                            >
+                                Explore My Work
+                            </button>
+                            <button
+                                onClick={() => navigateTo('contact')}
+                                className="px-10 py-4 bg-transparent border-2 border-blue-600 text-blue-600 font-semibold rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-lg"
+                            >
+                                Get in Touch
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // About Me Section Component
+        const AboutMe = () => {
+            return (
+                <section id="about-me" className="py-24 px-4 bg-gray-100 text-gray-900 min-h-screen flex items-center">
+                    <div className="container mx-auto max-w-7xl">
+                        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-20 animate-fade-in-up">Beyond the Code: My Journey</h2>
+
+                        <div className="flex flex-col md:flex-row items-center md:space-x-16 mb-20">
+                            {/* Professional Photo */}
+                            <div className="md:w-1/3 flex justify-center mb-10 md:mb-0 animate-fade-in-left">
+                                <img
+                                    src="picofme.png" // Placeholder for professional photo
+                                    alt="Professional Headshot of Rahul Sharma"
+                                    className="rounded-full shadow-2xl border-4 border-blue-400 w-72 h-72 object-cover transform transition-transform duration-500 hover:scale-105"
+                                />
+                            </div>
+
+                            {/* Bio Text */}
+                            <div className="md:w-2/3 text-lg leading-relaxed bg-white p-10 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-right">
+                                <p className="mb-6">
+                                    As a B.Tech (Information Technology) graduate from <span className="font-semibold text-blue-600">RGPV Bhopal</span>, complemented by a DCA from <span className="font-semibold text-blue-600">Makhanlal Chaturvedi University</span>, and a foundational education from <span className="font-semibold text-blue-600">Kendriya Vidyalaya Sagar</span>, my journey has been defined by a relentless pursuit of knowledge and a passion for turning complex ideas into tangible solutions.
+                                </p>
+                                <p className="mb-6">
+                                    My core technical interests span across <span className="font-semibold text-blue-600">Python with deep DSA expertise</span>, robust <span className="font-semibold text-blue-600">Web Development</span> (both front-end and back-end), efficient <span className="font-semibold text-blue-600">DevOps practices</span>, cutting-edge <span className="font-semibold text-blue-600">AI/ML applications</span>, and immersive <span className="font-semibold text-blue-600">Game Development</span>. I also bring a creative edge with my ability to design intricate <span className="font-semibold text-blue-600">3D models on Blender</span>.
+                                </p>
+                                <p className="mb-6">
+                                    My technical acumen is further amplified by strong <span className="font-semibold text-blue-600">communication skills</span> and proven <span className="font-semibold text-blue-600">leadership abilities</span>, honed through various academic and extracurricular engagements.
+                                </p>
+                                <p>
+                                    Outside the realm of technology, my diverse interests from the strategic complexities of <span className="font-semibold text-blue-600">trading</span> to the creative freedom of 3D design, and the discipline of <span className="font-semibold text-blue-600">sports</span> (Volleyball, Cricket, Football, Badminton), alongside the melodic escape of <span className="font-semibold text-blue-600">guitar</span> and the thrill of <span className="font-semibold text-blue-600">horse riding</span>, enrich my perspective and fuel my problem-solving approach. I thrive in dynamic environments, constantly seeking new challenges and opportunities to apply my multifaceted skill set for impactful innovation.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Education Timeline */}
+                        <h3 className="text-4xl font-bold text-center text-blue-600 mb-16 animate-fade-in-up">Education Journey</h3>
+
+                        <div className="py-24 px-4 bg-gray-50 flex items-center justify-center font-inter rounded-2xl border-2 border-blue-300">
+                            {/* Changed from relative to flex-col for mobile, flex-row for desktop, removed timeline-specific positioning */}
+                            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-8 lg:space-x-16 px-4 max-w-6xl mx-auto">
+                                {/* Education Item 1 - 10th Grade */}
+                                <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 mb-8 md:mb-0 w-full md:w-1/3 animate-fade-in-up delay-200 min-h-[220px]"> {/* Added min-h for consistent height */}
+                                    <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4"> {/* Adjusted margin for top icon */}
+                                        <span className="text-2xl text-white">📚</span> {/* Icon for 10th Grade */}
+                                    </div>
+                                    <p className="mb-2 text-base text-blue-600">2022</p>
+                                    <h4 className="mb-2 font-bold text-xl text-gray-900">10th Grade</h4>
+                                    <p className="text-sm leading-snug text-gray-700">St. Mary's Convent, Sagar</p>
+                                    <p className="text-sm leading-snug text-gray-700">Scored: 78%</p>
+                                </div>
+
+                                {/* Education Item 2 - 12th Grade */}
+                                <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 mb-8 md:mb-0 w-full md:w-1/3 animate-fade-in-up delay-200 min-h-[220px]"> {/* Added min-h for consistent height */}
+                                    <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4"> {/* Adjusted margin for top icon */}
+                                        <span className="text-2xl text-white">📚</span> {/* Icon for 12th Grade */}
+                                    </div>
+                                    <p className="mb-2 text-base text-blue-600">2024</p>
+                                    <h4 className="mb-2 font-bold text-xl text-gray-900">12th Grade</h4>
+                                    <p className="text-sm leading-snug text-gray-700">Kendriya Vidyalaya Sagar</p>
+                                    <p className="text-sm leading-snug text-gray-700">Scored: 76%</p>
+                                </div>
+
+                                {/* Education Item 3 - DCA */}
+                                <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 mb-8 md:mb-0 w-full md:w-1/3 animate-fade-in-up delay-400 min-h-[220px]"> {/* Added min-h for consistent height */}
+                                    <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4"> {/* Adjusted margin for top icon */}
+                                        <span className="text-2xl text-white">💻</span> {/* Icon for DCA */}
+                                    </div>
+                                    <p className="mb-2 text-base text-blue-600">2024 - 2025</p>
+                                    <h4 className="mb-2 font-bold text-xl text-gray-900">DCA</h4>
+                                    <p className="text-sm leading-snug text-gray-700">Makhanlal Chaturvedi University Bhopal</p>
+                                    <p className="text-sm leading-snug text-gray-700">CGPA: [Yet to be declared]</p>
+                                </div>
+
+                                {/* Education Item 4 - B.Tech */}
+                                <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 w-full md:w-1/3 animate-fade-in-up delay-600 min-h-[220px]"> {/* Added min-h for consistent height */}
+                                    <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4"> {/* Adjusted margin for top icon */}
+                                        <span className="text-2xl text-white">🎓</span> {/* Icon for B.Tech */}
+                                    </div>
+                                    <p className="mb-2 text-base text-blue-600">2024 - 2028</p>
+                                    <h4 className="mb-2 font-bold text-xl text-gray-900">B.Tech (IT)</h4>
+                                    <p className="text-sm leading-snug text-gray-700">RGPV Bhopal</p>
+                                    <p className="text-sm leading-snug text-gray-700">CGPA: [Yet to be declared]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Technical Prowess Section Component
+        const TechnicalProwess = () => {
+            const [filter, setFilter] = React.useState('All');
+
+            const skills = [
+                'All', 'Python (DSA)', 'Web Development', 'DevOps', 'AI/ML', 'Game Development'
+            ];
+
+            const projects = [
+                {
+                    id: 1,
+                    title: 'Advanced Data Structures & Algorithms Library',
+                    category: 'Python (DSA)',
+                    tech: ['Python', 'Algorithms', 'Data Structures'],
+                    description: 'Implemented various complex data structures and algorithms from scratch for optimal performance and problem-solving.',
+                    github: 'https://github.com/yourusername/dsa-library',
+                    demo: null,
+                    image: 'https://placehold.co/400x250/E0E0E0/333333?text=DSA+Project',
+                },
+                {
+                    id: 2,
+                    title: 'E-commerce Web Application',
+                    category: 'Web Development',
+                    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+                    description: 'Full-stack e-commerce platform with user authentication, product catalog, shopping cart, and order processing.',
+                    github: 'https://github.com/yourusername/ecommerce-app',
+                    demo: 'https://yourapp.netlify.app',
+                    image: 'https://placehold.co/400x250/E0E0E0/333333?text=E-commerce+Web+App',
+                },
+                {
+                    id: 3,
+                    title: 'CI/CD Pipeline for Microservices',
+                    category: 'DevOps',
+                    tech: ['Docker', 'Kubernetes', 'Jenkins', 'AWS'],
+                    description: 'Automated deployment pipeline for a microservices architecture using containerization and orchestration tools.',
+                    github: 'https://github.com/yourusername/ci-cd-pipeline',
+                    demo: null,
+                    image: 'https://placehold.co/400x250/E0E0E0/333333?text=DevOps+Pipeline',
+                },
+                {
+                    id: 4,
+                    title: 'Aura AI: Coding Tutor',
+                    category: 'AI/ML',
+                    tech: ['Python', 'API', 'Java Script'],
+                    description: 'Developed a convolutional neural network (CNN) model for high-accuracy image classification on a custom dataset.',
+                    github: 'https://github.com/Prathvi321/CodeHub.github.io',
+                    demo: 'https://prathvi321.github.io/CodeHub.github.io/Aura.html',
+                    image: 'Aura AI Image.png',
+                },
+                {
+                    id: 5,
+                    title: '2D Platformer Game',
+                    category: 'Game Development',
+                    tech: ['Unity', 'C#', 'Pixel Art'],
+                    description: 'Designed and developed a retro-style 2D platformer game with custom physics and enemy AI.',
+                    github: 'https://github.com/yourusername/platformer-game',
+                    demo: 'https://yourgame.itch.io',
+                    image: 'https://placehold.co/400x250/E0E0E0/333333?text=2D+Platformer+Game',
+                },
+                {
+                    id: 6,
+                    title: 'Personal Portfolio Website (This one!)',
+                    category: 'Web Development',
+                    tech: ['React', 'Tailwind CSS', 'JavaScript'],
+                    description: 'A responsive and dynamic portfolio showcasing diverse skills and projects.',
+                    github: 'https://github.com/yourusername/personal-portfolio',
+                    demo: 'https://yourportfolio.netlify.app',
+                    image: 'https://placehold.co/400x250/E0E0E0/333333?text=Portfolio+Website',
+                },
+                {
+                    id: 7,
+                    title: 'CodeHub: A learning Platform',
+                    category: 'Web Development',
+                    tech: ['Html', 'Tailwind CSS', 'JavaScript'],
+                    description: 'A responsive and dynamic portfolio showcasing diverse skills and projects.',
+                    github: 'https://github.com/Prathvi321/CodeHub.github.io',
+                    demo: 'https://prathvi321.github.io/CodeHub.github.io/',
+                    image: 'CodeHubpage.png',
+                },
+                {
+                    id: 8,
+                    title: 'Git Bridge : Tool to use Git',
+                    category: 'Python (DSA)',
+                    tech: ['Python', 'tkinter', 'Git', 'Automation'],
+                    description: 'This Application offers a visual, intuitive interface for GitHub, eliminating the need for complex Git commands.',
+                    github: 'https://github.com/Prathvi321/Git-Bridge',
+                    demo: 'https://gitbridge.netlify.app/',
+                    image: 'Screenshot 2025-06-28 173844.png',
+                },
+            ];
+
+            const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
+
+            return (
+                <section id="technical-prowess" className="py-24 px-4 bg-gray-100 text-gray-900 min-h-screen">
+                    <div className="container mx-auto max-w-7xl">
+                        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-20 animate-fade-in-up">My Digital Creations & Expertise</h2>
+
+                        {/* Skill Filter Buttons */}
+                        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in-up delay-200">
+                            {skills.map(skill => (
+                                <button
+                                    key={skill}
+                                    onClick={() => setFilter(skill)}
+                                    className={`px-7 py-3 rounded-full font-semibold text-lg transition-all duration-300 border-2
+                                        ${filter === skill
+                                            ? 'bg-blue-600 border-blue-600 text-white shadow-lg transform scale-105'
+                                            : 'bg-transparent border-blue-300 text-gray-700 hover:bg-blue-100 hover:border-blue-400 hover:text-blue-700'
+                                        }`}
+                                >
+                                    {skill}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Project Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-fade-in-up delay-400">
+                            {filteredProjects.map(project => (
+                                <div key={project.id} className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-300 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
+                                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/E0E0E0/333333?text=Image+Not+Found'; }}
+                                    />
+                                    <div className="p-7">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                                        <p className="text-gray-700 text-sm mb-5">{project.description}</p>
+                                        <div className="flex flex-wrap gap-2 mb-5">
+                                            {project.tech.map(tech => (
+                                                <span key={tech} className="bg-blue-200 text-blue-800 text-xs px-3 py-1 rounded-full">{tech}</span>
+                                            ))}
+                                        </div>
+                                        <div className="flex flex-wrap gap-4">
+                                            <a
+                                                href={project.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300"
+                                            >
+                                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.835.09-.647.35-1.089.636-1.338-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.39-1.988 1.029-2.688-.103-.253-.446-1.272.097-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.099 2.651.64.7 1.028 1.592 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.579.688.481C21.137 20.281 24 16.527 24 12.017 24 6.484 19.522 2 14 2H12z" clipRule="evenodd" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                            {project.demo && (
+                                                <a
+                                                    href={project.demo}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-300"
+                                                >
+                                                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                                    </svg>
+                                                    Live Demo
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Creative Corner Section Component
+        const CreativeCorner = () => {
+            return (
+                <section id="creative-corner" className="py-24 px-4 bg-gray-50 text-gray-900 min-h-screen">
+                    <div className="container mx-auto max-w-7xl">
+                        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-20 animate-fade-in-up">Creative Corner & Passions</h2>
+
+                        {/* 3D Design (Blender) Showcase */}
+                        <div className="mb-20 bg-white p-10 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-left">
+                            <h3 className="text-4xl font-bold text-gray-900 mb-8 text-center">3D Design with Blender</h3>
+                            <p className="text-lg text-gray-700 mb-10 text-center max-w-3xl mx-auto">
+                                My passion for design extends into the third dimension, where I bring concepts to life using Blender. Explore some of my favorite models below.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
+                                <div class="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
+                                    <iframe
+                                        title="Room"
+                                        frameborder="0"
+                                        allowfullscreen
+                                        mozallowfullscreen="true"
+                                        webkitallowfullscreen="true"
+                                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                                        xr-spatial-tracking="true"
+                                        execution-while-out-of-viewport="true"
+                                        execution-while-not-rendered="true"
+                                        web-share="true"
+                                        src="https://sketchfab.com/models/ede0719b3b4b45a783b347a662cbcdb1/embed"
+                                        class="w-full h-full rounded-xl"
+                                    ></iframe>
+                                    <p class="text-sm font-normal text-gray-400 mt-2 p-2 text-center">
+                                        <a
+                                            href="https://sketchfab.com/3d-models/room-ede0719b3b4b45a783b347a662cbcdb1?utm_medium=embed&utm_campaign=share-popup&utm_content=ede0719b3b4b45a783b347a662cbcdb1"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                            Room
+                                        </a>
+                                        
+                                        <a
+                                            href="https://sketchfab.com/prathvisinght3?utm_medium=embed&utm_campaign=share-popup&utm_content=ede0719b3b4b45a783b347a662cbcdb1"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                            
+                                        </a>
+                                        
+                                        <a
+                                            href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=ede0719b3b4b45a783b347a662cbcdb1"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                          
+                                        </a>
+                                    </p>
+                                </div>
+
+            <div className="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
+                {/* Sketchfab iframe for the 3D model */}
+                <iframe
+                    title="classic black muscle car"
+                    frameBorder="0"
+                    allowFullScreen
+                    mozallowfullscreen="true"
+                    webkitallowfullscreen="true"
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                    xr-spatial-tracking="true"
+                    execution-while-out-of-viewport="true"
+                    execution-while-not-rendered="true"
+                    web-share="true"
+                    src="https://sketchfab.com/models/91c77f0ab26940548ccdedeb2be6dde4/embed"
+                    className="w-full h-full rounded-xl"
+                ></iframe>
+                
+                <p className="text-sm font-normal text-gray-400 mt-2 p-2 text-center">
+                    <a
+                        href="https://sketchfab.com/3d-models/classic-black-muscle-car-91c77f0ab26940548ccdedeb2be6dde4?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                        classic black muscle car
+                    </a>
+                    
+                    <a
+                        href="https://sketchfab.com/prathvisinght3?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                       
+                    </a>
+                   
+                    <a
+                        href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=91c77f0ab26940548ccdedeb2be6dde4"
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                      
+                    </a>
+                </p>
+            </div>
+
+                                <div class="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
+                                    <iframe
+                                        title="Ford Mustang Fastback 1967"
+                                        frameborder="0"
+                                        allowfullscreen
+                                        mozallowfullscreen="true"
+                                        webkitallowfullscreen="true"
+                                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                                        xr-spatial-tracking="true"
+                                        execution-while-out-of-viewport="true"
+                                        execution-while-not-rendered="true"
+                                        web-share="true"
+                                        src="https://sketchfab.com/models/8949a90f004848e9b26c16819ece43ae/embed"
+                                        class="w-full h-full rounded-xl"
+                                    ></iframe>
+                                    <p class="text-sm font-normal text-gray-400 mt-2 p-2 text-center">
+                                        <a
+                                            href="https://sketchfab.com/3d-models/ford-mustang-fastback-1967-8949a90f004848e9b26c16819ece43ae?utm_medium=embed&utm_campaign=share-popup&utm_content=8949a90f004848e9b26c16819ece43ae"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                            Ford Mustang Fastback 1967
+                                        </a>
+
+                                        <a
+                                            href="https://sketchfab.com/zirodesign?utm_medium=embed&utm_campaign=share-popup&utm_content=8949a90f004848e9b26c16819ece43ae"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+
+                                        </a>
+                                        <a
+                                            href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=8949a90f004848e9b26c16819ece43ae"
+                                            target="_blank"
+                                            rel="nofollow noopener noreferrer"
+                                            class="font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Leadership & Communication Section Component
+        const LeadershipCommunication = () => {
+            return (
+                <section id="leadership-communication" className="py-24 px-4 bg-gray-100 text-gray-900 min-h-screen">
+                    <div className="container mx-auto max-w-7xl">
+                        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-20 animate-fade-in-up">Leading & Connecting: My Impact</h2>
+
+                        {/* Leadership Examples */}
+                        <div className="mb-20 bg-white p-10 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-left">
+                            <h3 className="text-4xl font-bold text-gray-900 mb-8 text-center">Leadership in Action</h3>
+                            <div className="space-y-10">
+                                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-blue-200">
+                                    <h4 className="text-2xl font-semibold text-blue-600 mb-3">Project Lead: University Hackathon Team</h4>
+                                    <p className="text-gray-700 mb-2">
+                                        <span className="font-bold">Situation:</span> Led a team of 4 students to develop an innovative smart city solution within a 48-hour hackathon.
+                                    </p>
+                                    <p className="text-gray-700 mb-2">
+                                        <span className="font-bold">Task:</span> Design and implement a prototype that addresses urban traffic congestion using AI and IoT.
+                                    </p>
+                                    <p className="text-gray-700 mb-2">
+                                        <span className="font-bold">Action:</span> Coordinated team roles, managed project timeline, facilitated brainstorming sessions, and ensured seamless integration of components. Mentored junior members on new technologies.
+                                    </p>
+                                    <p className="text-gray-700">
+                                        <span className="font-bold">Result:</span> Our team secured 1st place, praised for our innovative approach and functional prototype. I fostered a collaborative environment, enhancing team productivity and morale.
+                                    </p>
+                                </div>
+                                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-blue-200">
+                                    <h4 className="text-2xl font-semibold text-blue-600 mb-3">Technical Mentor: Coding Club</h4>
+                                    <p className="text-gray-700 mb-2">
+                                        <span className="font-bold">Situation:</span> Identified a need for structured guidance among new coding club members struggling with DSA concepts.
+                                    </p>
+                                    <p className="text-gray-700 mb-2">
+                                        <span className="font-bold">Task:</span> Develop and deliver weekly workshops on Python and Data Structures & Algorithms.
+                                    </p>
+                                    <p className="text-gray-700 mb-2">
+                                        <span className="font-bold">Action:</span> Prepared comprehensive lesson plans, conducted interactive coding sessions, and provided one-on-one mentorship, adapting teaching methods to individual learning styles.
+                                    </p>
+                                    <p className="text-gray-700">
+                                        <span className="font-bold">Result:</span> Improved understanding and confidence among mentees, evidenced by increased participation in coding challenges and positive feedback on workshop effectiveness.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Communication Skills */}
+                        <div className="mb-20 bg-white p-10 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-right">
+                            <h3 className="text-4xl font-bold text-gray-900 mb-8 text-center">Effective Communication</h3>
+                            <div className="space-y-8 text-lg text-gray-700">
+                                <p className="flex items-start">
+                                    <span className="mr-4 text-blue-600 text-3xl">🗣️</span>
+                                    <span className="flex-1">
+                                        <span className="font-bold text-gray-900">Public Speaking & Presentations:</span> Regularly present complex technical topics to diverse audiences, from peer groups to faculty, ensuring clarity and engagement. (e.g., "Demystifying Docker" workshop).
+                                    </span>
+                                </p>
+                                <p className="flex items-start">
+                                    <span className="mr-4 text-blue-600 text-3xl">📝</span>
+                                    <span className="flex-1">
+                                        <span className="font-bold text-gray-900">Technical Documentation:</span> Excel at creating clear, concise, and comprehensive documentation for software projects, APIs, and system architectures, facilitating seamless collaboration.
+                                    </span>
+                                </p>
+                                <p className="flex items-start">
+                                    <span className="mr-4 text-blue-600 text-3xl">🤝</span>
+                                    <span className="flex-1">
+                                        <span className="font-bold text-gray-900">Collaborative Communication:</span> Skilled in fostering open communication within teams, actively listening, providing constructive feedback, and resolving conflicts to achieve shared goals.
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Testimonials */}
+                        <div className="bg-white p-10 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-up">
+                            <h3 className="text-4xl font-bold text-gray-900 mb-8 text-center">What Others Say</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-blue-200 italic text-gray-700">
+                                    <p className="mb-5 leading-relaxed">"Prathvi's leadership during the hackathon was exceptional. He kept us focused, motivated, and his ability to explain complex ideas made a huge difference. A true team player!"</p>
+                                    <p className="text-right font-semibold text-blue-600">- Professor Rawat, IGEC Sagar</p>
+                                </div>
+                                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-blue-200 italic text-gray-700">
+                                    <p className="mb-5 leading-relaxed">"His technical communication skills are top-notch. Prathvi can break down the most challenging concepts into easily understandable terms, which is invaluable for any project."</p>
+                                    <p className="text-right font-semibold text-blue-600">- Pandey Sir, A.P. Computers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Contact Section Component
+        const Contact = () => {
+            React.useEffect(() => {
+                const script = document.createElement("script");
+                script.src = "https://tally.so/widgets/embed.js";
+                script.onload = script.onerror = () => {
+                    if (typeof Tally !== 'undefined') {
+                        Tally.loadEmbeds();
+                    } else {
+                        document.querySelectorAll("iframe[data-tally-src]:not([src])")
+                            .forEach(e => { e.src = e.dataset.tallySrc; });
+                    }
+                };
+                document.body.appendChild(script);
+            }, []);
+
+            return (
+                <section id="contact" className="py-24 px-4 bg-gray-50 text-gray-900 min-h-screen flex flex-col items-center">
+                    <div className="container mx-auto max-w-5xl bg-white p-12 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-up w-full flex flex-col items-center">
+                        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-16">Let's Connect & Collaborate</h2>
+                        <p className="text-lg text-gray-700 text-center mb-10 max-w-2xl mx-auto">
+                            I'm always open to discussing new opportunities, collaborations, or simply sharing insights. Feel free to reach out!
+                        </p>
+                        <div
+                            style={{
+                                width: "180px",
+                                height: "50px",
+                                background: "white",
+                                borderRadius: "4px",
+                                position: "absolute",
+                                bottom: "60px",
+                                right: "55px"
+                            }}
+                        ></div>
+                        <iframe
+                            data-tally-src="https://tally.so/embed/wLNq5v?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                            loading="lazy"
+                            width="100%"
+                            height="276"
+                            frameBorder="0"
+                            marginHeight="0"
+                            marginWidth="0"
+                            title="Lets Connect and Collaborate"
+                            className="rounded-lg shadow-md"
+                        ></iframe>
+                    </div>
+
+                    {/* Social Links Section */}
+                    <div className="mt-16 text-center w-full">
+                        <h3 className="text-3xl font-bold text-gray-900 mb-8">Find Me On:</h3>
+                        <div className="flex justify-center space-x-8">
+                            <a href="https://www.linkedin.com/in/prathvi-singh-thakur-bba493333/" target="_blank" rel="noopener noreferrer"
+                                className="text-gray-700 hover:text-blue-600 transition-colors duration-300 transform hover:scale-110">
+                                <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.98v16h4.98v-8.798c0-3.245 3.102-3.528 3.102 0v8.798h4.98v-10.13c0-6.177-7.007-5.938-8.082-2.99z" /></svg>
+                            </a>
+                            <a href="https://github.com/Prathvi321" target="_blank" rel="noopener noreferrer"
+                                className="text-gray-700 hover:text-blue-600 transition-colors duration-300 transform hover:scale-110">
+                                <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.835.09-.647.35-1.089.636-1.338-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.39-1.988 1.029-2.688-.103-.253-.446-1.272.097-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.099 2.651.64.7 1.028 1.592 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.579.688.481C21.137 20.281 24 16.527 24 12.017 24 6.484 19.522 2 14 2H12z" clipRule="evenodd" /></svg>
+                            </a>
+                            <a href="https://www.instagram.com/prathvithakur20?igsh=NW9tZGw3ZW9jNnZi" target="_blank" rel="noopener noreferrer"
+                                className="text-gray-700 hover:text-blue-600 transition-colors duration-300 transform hover:scale-110">
+                                <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.13.62a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z" /></svg>
+                            </a>
+                            <a href="tel:+918962685091"
+                                className="text-gray-700 hover:text-blue-600 transition-colors duration-300 transform hover:scale-110"
+                                title="Call Me">
+                                <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+
+
+        // Footer Component
+        const Footer = () => {
+            return (
+                <footer className="bg-white py-8 text-center text-gray-700 text-base border-t border-blue-200">
+                    <div className="container mx-auto px-4">
+                        <p>&copy; {new Date().getFullYear()} Prathvi Singh Thakur. All rights reserved.</p>
+                        <p className="mt-3">Designed with Passion and Code.</p>
+                    </div>
+                </footer>
+            );
+        };
+
+        // Render the App component into the root div
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <App />);
+    </script>
+</body>
+
+</html>
