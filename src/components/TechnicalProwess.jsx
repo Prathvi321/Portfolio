@@ -147,7 +147,6 @@ const TechnicalProwess = () => {
               src={project.image}
               className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
               controls
-              loop
               playsInline
             />
           ) : (
