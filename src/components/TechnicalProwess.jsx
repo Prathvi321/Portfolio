@@ -84,7 +84,8 @@ const TechnicalProwess = () => {
       description: 'This Application offers a visual, intuitive interface for GitHub, eliminating the need for complex Git commands.',
       github: 'https://github.com/Prathvi321/Git-Bridge',
       demo: 'https://gitbridge.netlify.app/',
-      image: '/Screenshot Git Bridge.png',
+      image: '/GitBridge.mp4',
+      isVideo: true,
     },
   ];
 
@@ -141,12 +142,22 @@ const TechnicalProwess = () => {
       {projects.map(project => (
         <div key={project.id}
           className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-300 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
-            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/E0E0E0/333333?text=Image+Not+Found'; }}
-          />
+          {project.isVideo ? (
+            <video
+              src={project.image}
+              className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
+              controls
+              loop
+              playsInline
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
+              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/E0E0E0/333333?text=Image+Not+Found'; }}
+            />
+          )}
           <div className="p-7">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
             <p className="text-gray-700 text-sm mb-5">{project.description}</p>

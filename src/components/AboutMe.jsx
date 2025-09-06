@@ -9,7 +9,7 @@ const AboutMe = () => {
         <div className="flex flex-col md:flex-row items-center md:space-x-16 mb-20">
           <div className="md:w-1/3 flex justify-center mb-10 md:mb-0 animate-fade-in-left">
             <img
-              src="/picofme.png"
+              src="/HeadShot.png"
               alt="Professional Headshot of Prathvi Singh Thakur"
               className="rounded-full shadow-2xl border-4 border-blue-400 w-72 h-72 object-cover transform transition-transform duration-500 hover:scale-105"
             />
