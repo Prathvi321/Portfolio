@@ -145,4 +145,4 @@ Feel free to fork this project and customize it for your own portfolio!
 
 ---
 
-**Built with ❤️ by Prathvi Singh Thakur**
+**Built by Prathvi Singh Thakur**
