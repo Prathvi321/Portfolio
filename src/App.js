@@ -41,19 +41,19 @@ function App() {
 
   useEffect(() => {
     audioRef.current = document.getElementById('backgroundAudio');
-    const playAudio = async () => {
-      if (audioRef.current) {
+    const introAudio = document.getElementById('introAudio');
+    
+    const playIntroAudio = async () => {
+      if (introAudio) {
         try {
-          await audioRef.current.play();
-          setAudioPlaying(true);
+          await introAudio.play();
         } catch (error) {
-          console.log('Autoplay prevented:', error);
-          setAudioPlaying(false);
+          console.log('Intro autoplay prevented:', error);
         }
       }
     };
 
-    playAudio();
+    playIntroAudio();
 
     return () => {
       if (audioRef.current) {
@@ -76,6 +76,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 text-gray-900 font-inter antialiased">
       <audio id="backgroundAudio" src="/66225f5a-4a92-469e-b44e-8bb142fc70e7.mp3" preload="auto"></audio>
+      <audio id="introAudio" src="/Intro.mp3" preload="auto"></audio>
       
       <button
         onClick={toggleAudio}
