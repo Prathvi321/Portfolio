@@ -8,76 +8,26 @@ const TechnicalProwess = () => {
   const projects = [
     {
       id: 1,
-      title: 'Advanced Data Structures & Algorithms Library',
-      category: 'Python (DSA)',
-      tech: ['Python', 'Algorithms', 'Data Structures'],
-      description: 'Implemented various complex data structures and algorithms from scratch for optimal performance and problem-solving.',
-      github: 'https://github.com/yourusername/dsa-library',
-      demo: null,
-      image: 'https://placehold.co/400x250/E0E0E0/333333?text=DSA+Project',
-    },
-    {
-      id: 2,
-      title: 'E-commerce Web Application',
-      category: 'Web Development',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
-      description: 'Full-stack e-commerce platform with user authentication, product catalog, shopping cart, and order processing.',
-      github: 'https://github.com/yourusername/ecommerce-app',
-      demo: 'https://yourapp.netlify.app',
-      image: 'https://placehold.co/400x250/E0E0E0/333333?text=E-commerce+Web+App',
-    },
-    {
-      id: 3,
-      title: 'CI/CD Pipeline for Microservices',
-      category: 'DevOps',
-      tech: ['Docker', 'Kubernetes', 'Jenkins', 'AWS'],
-      description: 'Automated deployment pipeline for a microservices architecture using containerization and orchestration tools.',
-      github: 'https://github.com/yourusername/ci-cd-pipeline',
-      demo: null,
-      image: 'https://placehold.co/400x250/E0E0E0/333333?text=DevOps+Pipeline',
-    },
-    {
-      id: 4,
-      title: 'Aura AI: Coding Tutor',
-      category: 'AI/ML',
-      tech: ['Python', 'API', 'JavaScript'],
-      description: 'Developed a convolutional neural network (CNN) model for high-accuracy image classification on a custom dataset.',
-      github: 'https://github.com/Prathvi321/CodeHub/blob/main/Aura.html',
-      demo: 'https://codehub321.netlify.app/aura',
-      image: '/Aura AI Image.png',
-    },
-    {
-      id: 5,
-      title: '2D Platformer Game',
-      category: 'Game Development',
-      tech: ['Unity', 'C#', 'Pixel Art'],
-      description: 'Designed and developed a retro-style 2D platformer game with custom physics and enemy AI.',
-      github: 'https://github.com/yourusername/platformer-game',
-      demo: 'https://yourgame.itch.io',
-      image: 'https://placehold.co/400x250/E0E0E0/333333?text=2D+Platformer+Game',
-    },
-    {
-      id: 6,
       title: 'Personal Portfolio Website (This one!)',
       category: 'Web Development',
       tech: ['React', 'Tailwind CSS', 'JavaScript'],
       description: 'A responsive and dynamic portfolio showcasing diverse skills and projects.',
       github: 'https://github.com/Prathvi321/Portfolio',
       demo: 'https://polymathportfolio.netlify.app/',
-      image: '/image.png',
+      image: '/Portfolio.png',
     },
     {
-      id: 7,
+      id: 2,
       title: 'CodeHub: A learning Platform',
       category: 'Web Development',
-      tech: ['HTML', 'Tailwind CSS', 'React'],
+      tech: ['React', 'Tailwind CSS', 'JavaScript'],
       description: ' A comprehensive learning platform designed to take coders from beginner to pro.',
       github: 'https://github.com/Prathvi321/CodeHub',
       demo: 'https://codehub321.netlify.app/',
       image: '/CodeHubpage.png',
     },
     {
-      id: 8,
+      id: 3,
       title: 'Git Bridge : Tool to use Git',
       category: 'Python (DSA)',
       tech: ['Python', 'tkinter', 'Git', 'Automation'],
@@ -97,44 +47,26 @@ const TechnicalProwess = () => {
       date: 'May 2023',
       credentialUrl: 'https://www.coursera.org/account/accomplishments/certificate/ABCDEF123',
       image: 'https://placehold.co/100x100/ADD8E6/333333?text=Google',
-    },
-    {
-      id: 2,
-      title: 'AWS Certified Cloud Practitioner',
-      issuer: 'Amazon Web Services',
-      date: 'July 2024',
-      credentialUrl: 'https://www.credly.com/badges/XYZABC',
-      image: 'https://placehold.co/100x100/FFD700/333333?text=AWS',
-    },
-    {
-      id: 3,
-      title: 'Python for Data Science and Machine Learning Bootcamp',
-      issuer: 'Udemy',
-      date: 'January 2024',
-      credentialUrl: 'https://www.udemy.com/certificate/123456789',
-      image: 'https://placehold.co/100x100/90EE90/333333?text=Udemy',
-    },
+    }
   ];
 
   const technologies = [
-    { name: 'Python', category: 'Languages', icon: '🐍' },
-    { name: 'JavaScript', category: 'Languages', icon: '📜' },
-    { name: 'HTML5', category: 'Languages', icon: '🌐' },
-    { name: 'CSS3', category: 'Languages', icon: '🎨' },
-    { name: 'React', category: 'Frameworks/Libraries', icon: '⚛️' },
-    { name: 'Node.js', category: 'Frameworks/Libraries', icon: '🟢' },
-    { name: 'Express.js', category: 'Frameworks/Libraries', icon: '🚀' },
-    { name: 'Tailwind CSS', category: 'Frameworks/Libraries', icon: '🌬️' },
-    { name: 'Git', category: 'Tools', icon: '🌳' },
-    { name: 'Docker', category: 'DevOps', icon: '🐳' },
-    { name: 'Kubernetes', category: 'DevOps', icon: '☸️' },
-    { name: 'AWS', category: 'Cloud Platforms', icon: '☁️' },
-    { name: 'MongoDB', category: 'Databases', icon: '🍃' },
-    { name: 'SQL', category: 'Databases', icon: '🗄️' },
-    { name: 'TensorFlow', category: 'AI/ML', icon: '🧠' },
-    { name: 'PyTorch', category: 'AI/ML', icon: '🔥' },
-    { name: 'Blender', category: 'Design/Tools', icon: '🧊' },
-    { name: 'Unity', category: 'Game Engines', icon: '🎮' },
+    { name: 'Python', category: 'Languages', icon: '/icons/icons8-python.svg' },
+    { name: 'JavaScript', category: 'Languages', icon: '/icons/icons8-javascript.svg' },
+    { name: 'HTML5', category: 'Languages', icon: '/icons/icons8-html5.svg' },
+    { name: 'CSS3', category: 'Languages', icon: '/icons/icons8-css3.svg' },
+    { name: 'React', category: 'Frameworks/Libraries', icon: '/icons/react-2.svg' },
+    { name: 'Node.js', category: 'Frameworks/Libraries', icon: '/icons/icons8-nodejs.svg' },
+    { name: 'Tailwind CSS', category: 'Frameworks/Libraries', icon: '/icons/icons8-tailwind-css.svg' },
+    { name: 'GitHub', category: 'DevOps', icon: '/icons/icons8-github.svg' },
+    { name: 'Git', category: 'Tools', icon: '/icons/icons8-git.svg' },
+    { name: 'Docker', category: 'DevOps', icon: '/icons/icons8-docker.svg' },
+    { name: 'Kubernetes', category: 'DevOps', icon: '/icons/icons8-kubernetes.svg' },
+    { name: 'AWS', category: 'Cloud Platforms', icon: '/icons/icons8-aws.svg' },
+    { name: 'MongoDB', category: 'Databases', icon: '/icons/mongodb-icon.svg' },
+    { name: 'MySQL', category: 'Databases', icon: '/icons/mysql-icon.svg' },
+    { name: 'Blender', category: 'Design/Tools', icon: '/icons/blender-svgrepo-com.svg' },
+    { name: 'Unreal Engine', category: 'Game Engines', icon: '/icons/icons8-unreal-engine.svg' },
   ];
 
   const ProjectsDisplay = () => (
@@ -244,7 +176,11 @@ const TechnicalProwess = () => {
         {technologies.map(tech => (
           <div key={tech.name}
             className="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-xl border border-blue-300 w-32 h-32 justify-center transition-transform duration-300 hover:scale-105">
-            <span className="text-5xl mb-2">{tech.icon}</span>
+            {tech.icon.startsWith('/icons/') ? (
+              <img src={tech.icon} alt={tech.name} className="w-12 h-12 mb-2" />
+            ) : (
+              <span className="text-5xl mb-2">{tech.icon}</span>
+            )}
             <p className="text-lg font-semibold text-gray-800">{tech.name}</p>
           </div>
         ))}

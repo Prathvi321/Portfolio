@@ -18,13 +18,7 @@ const CreativeCorner = () => {
                 title="Room"
                 frameBorder="0"
                 allowFullScreen
-                mozallowfullscreen="true"
-                webkitallowfullscreen="true"
                 allow="autoplay; fullscreen; xr-spatial-tracking"
-                xr-spatial-tracking="true"
-                execution-while-out-of-viewport="true"
-                execution-while-not-rendered="true"
-                web-share="true"
                 src="https://sketchfab.com/models/ede0719b3b4b45a783b347a662cbcdb1/embed"
                 className="w-full h-full rounded-xl"
               ></iframe>
@@ -45,13 +39,7 @@ const CreativeCorner = () => {
                 title="classic black muscle car"
                 frameBorder="0"
                 allowFullScreen
-                mozallowfullscreen="true"
-                webkitallowfullscreen="true"
                 allow="autoplay; fullscreen; xr-spatial-tracking"
-                xr-spatial-tracking="true"
-                execution-while-out-of-viewport="true"
-                execution-while-not-rendered="true"
-                web-share="true"
                 src="https://sketchfab.com/models/91c77f0ab26940548ccdedeb2be6dde4/embed"
                 className="w-full h-full rounded-xl"
               ></iframe>
@@ -67,32 +55,6 @@ const CreativeCorner = () => {
               </p>
             </div>
 
-            <div className="relative w-full h-96 bg-gray-800 rounded-xl overflow-hidden flex flex-col items-center justify-center shadow-2xl border border-gray-700">
-              <iframe
-                title="Ford Mustang Fastback 1967"
-                frameBorder="0"
-                allowFullScreen
-                mozallowfullscreen="true"
-                webkitallowfullscreen="true"
-                allow="autoplay; fullscreen; xr-spatial-tracking"
-                xr-spatial-tracking="true"
-                execution-while-out-of-viewport="true"
-                execution-while-not-rendered="true"
-                web-share="true"
-                src="https://sketchfab.com/models/8949a90f004848e9b26c16819ece43ae/embed"
-                className="w-full h-full rounded-xl"
-              ></iframe>
-              <p className="text-sm font-normal text-gray-400 mt-2 p-2 text-center">
-                <a
-                  href="https://sketchfab.com/3d-models/ford-mustang-fastback-1967-8949a90f004848e9b26c16819ece43ae?utm_medium=embed&utm_campaign=share-popup&utm_content=8949a90f004848e9b26c16819ece43ae"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  className="font-bold text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  Ford Mustang Fastback 1967
-                </a>
-              </p>
-            </div>
           </div>
         </div>
       </div>
