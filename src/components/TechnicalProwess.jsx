@@ -42,11 +42,11 @@ const TechnicalProwess = () => {
   const certifications = [
     {
       id: 1,
-      title: 'Google IT Support Professional Certificate',
-      issuer: 'Coursera (Google)',
-      date: 'May 2023',
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/certificate/ABCDEF123',
-      image: 'https://placehold.co/100x100/ADD8E6/333333?text=Google',
+      title: 'Complete 2025 Python Bootcamp: Learn Python from Scratch',
+      issuer: 'Udemy',
+      date: 'Oct 2024',
+      credentialUrl: 'https://www.udemy.com/certificate/UC-2692602b-cf0a-4131-913a-d1ea9b644206',
+      image: 'public/Python Boot Camp.png',
     }
   ];
 
