@@ -1,177 +1,217 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Laptop, Award, Cpu } from 'lucide-react';
 
 const TechnicalProwess = () => {
-  const tabs = [
-    { name: 'Projects', icon: <Laptop size={22} /> },
-    { name: 'Certifications', icon: <Award size={22} /> },
-    { name: 'Technologies', icon: <Cpu size={22} /> },
-  ];
+  const [activeTab, setActiveTab] = useState('Projects');
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeTab = tabs[activeIndex].name;
-
-  const nextTab = () => setActiveIndex((prev) => (prev + 1) % tabs.length);
-  const prevTab = () => setActiveIndex((prev) => (prev - 1 + tabs.length) % tabs.length);
+  const tabs = ['Projects', 'Certifications', 'Technologies'];
 
   const projects = [
     {
       id: 1,
-      title: 'Personal Portfolio Website',
-      description: 'Responsive portfolio showcasing skills and projects.',
+      title: 'Personal Portfolio Website (This one!)',
+      category: 'Web Development',
       tech: ['React', 'Tailwind CSS', 'JavaScript'],
+      description: 'A responsive and dynamic portfolio showcasing diverse skills and projects.',
       github: 'https://github.com/Prathvi321/Portfolio',
       demo: 'https://polymathportfolio.netlify.app/',
       image: '/Portfolio.png',
     },
     {
       id: 2,
-      title: 'CodeHub: Learning Platform',
-      description: 'A full-stack learning platform for developers.',
+      title: 'CodeHub: A learning Platform',
+      category: 'Web Development',
       tech: ['React', 'Tailwind CSS', 'JavaScript'],
+      description: ' A comprehensive learning platform designed to take coders from beginner to pro.',
       github: 'https://github.com/Prathvi321/CodeHub',
       demo: 'https://codehub321.netlify.app/',
       image: '/CodeHubpage.png',
+    },
+    {
+      id: 3,
+      title: 'Git Bridge : Tool to use Git',
+      category: 'Python (DSA)',
+      tech: ['Python', 'tkinter', 'Git', 'Automation'],
+      description: 'This Application offers a visual, intuitive interface for GitHub, eliminating the need for complex Git commands.',
+      github: 'https://github.com/Prathvi321/Git-Bridge',
+      demo: 'https://gitbridge.netlify.app/',
+      image: '/GitBridge.mp4',
+      isVideo: true,
     },
   ];
 
   const certifications = [
     {
       id: 1,
-      title: 'Complete Python Bootcamp 2025',
+      title: 'Complete 2025 Python Bootcamp: Learn Python from Scratch',
       issuer: 'Udemy',
       date: 'Oct 2024',
       credentialUrl: 'https://www.udemy.com/certificate/UC-2692602b-cf0a-4131-913a-d1ea9b644206',
-      image: '/Python Boot Camp.png',
-    },
+      image: 'https://udemy-certificate.s3.amazonaws.com/image/UC-2692602b-cf0a-4131-913a-d1ea9b644206.jpg?v=1759585413000',
+    }
   ];
 
   const technologies = [
-    { name: 'React', icon: '/icons/react-2.svg' },
-    { name: 'Python', icon: '/icons/icons8-python.svg' },
-    { name: 'Docker', icon: '/icons/icons8-docker.svg' },
-    { name: 'AWS', icon: '/icons/icons8-aws.svg' },
+    { name: 'Python', category: 'Languages', icon: '/icons/icons8-python.svg' },
+    { name: 'JavaScript', category: 'Languages', icon: '/icons/icons8-javascript.svg' },
+    { name: 'HTML5', category: 'Languages', icon: '/icons/icons8-html5.svg' },
+    { name: 'CSS3', category: 'Languages', icon: '/icons/icons8-css3.svg' },
+    { name: 'React', category: 'Frameworks/Libraries', icon: '/icons/react-2.svg' },
+    { name: 'Node.js', category: 'Frameworks/Libraries', icon: '/icons/icons8-nodejs.svg' },
+    { name: 'Tailwind CSS', category: 'Frameworks/Libraries', icon: '/icons/icons8-tailwind-css.svg' },
+    { name: 'GitHub', category: 'DevOps', icon: '/icons/icons8-github.svg' },
+    { name: 'Git', category: 'Tools', icon: '/icons/icons8-git.svg' },
+    { name: 'Docker', category: 'DevOps', icon: '/icons/icons8-docker.svg' },
+    { name: 'Kubernetes', category: 'DevOps', icon: '/icons/icons8-kubernetes.svg' },
+    { name: 'AWS', category: 'Cloud Platforms', icon: '/icons/icons8-aws.svg' },
+    { name: 'MongoDB', category: 'Databases', icon: '/icons/mongodb-icon.svg' },
+    { name: 'MySQL', category: 'Databases', icon: '/icons/mysql-icon.svg' },
+    { name: 'Blender', category: 'Design/Tools', icon: '/icons/blender-svgrepo-com.svg' },
+    { name: 'Unreal Engine', category: 'Game Engines', icon: '/icons/icons8-unreal-engine.svg' },
   ];
 
-  const fadeVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-      rotateY: direction > 0 ? -20 : 20,
-    }),
-    center: { x: 0, opacity: 1, rotateY: 0 },
-    exit: (direction) => ({
-      x: direction < 0 ? 300 : -300,
-      opacity: 0,
-      rotateY: direction < 0 ? -20 : 20,
-    }),
-  };
-
-  const [direction, setDirection] = useState(0);
-
-  const paginate = (newDirection) => {
-    setDirection(newDirection);
-    if (newDirection > 0) nextTab();
-    else prevTab();
-  };
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'Projects':
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {projects.map((p) => (
-              <div key={p.id} className="bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border hover:scale-105 transition-all">
-                <img src={p.image} alt={p.title} className="h-48 w-full object-cover rounded-xl mb-4" />
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{p.title}</h3>
-                <p className="text-gray-600 mb-3">{p.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {p.tech.map((t) => (
-                    <span key={t} className="bg-blue-100 text-blue-800 px-3 py-1 text-xs rounded-full">{t}</span>
-                  ))}
-                </div>
-                <div className="flex gap-3">
-                  <a href={p.github} className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-700">GitHub</a>
-                  <a href={p.demo} className="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm hover:bg-gray-300">Demo</a>
-                </div>
-              </div>
-            ))}
+  const ProjectsDisplay = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-fade-in-up delay-400">
+      {projects.map(project => (
+        <div key={project.id}
+          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-300 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+          {project.isVideo ? (
+            <video
+              src={project.image}
+              className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
+              controls
+              playsInline
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
+              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/E0E0E0/333333?text=Image+Not+Found'; }}
+            />
+          )}
+          <div className="p-7">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
+            <p className="text-gray-700 text-sm mb-5">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mb-5">
+              {project.tech.map(tech => (
+                <span key={tech}
+                  className="bg-blue-200 text-blue-800 text-xs px-3 py-1 rounded-full">{tech}</span>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300"
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.835.09-.647.35-1.089.636-1.338-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.39-1.988 1.029-2.688-.103-.253-.446-1.272.097-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.099 2.651.64.7 1.028 1.592 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.579.688.481C21.137 20.281 24 16.527 24 12.017 24 6.484 19.522 2 14 2H12z"
+                    clipRule="evenodd" />
+                </svg>
+                GitHub
+              </a>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-300"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                  </svg>
+                  Live Demo
+                </a>
+              )}
+            </div>
           </div>
-        );
-      case 'Certifications':
-        return (
-          <div className="flex justify-center flex-wrap gap-8">
-            {certifications.map((c) => (
-              <div key={c.id} className="bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg border text-center w-80 hover:scale-105 transition-all">
-                <img src={c.image} alt={c.title} className="w-24 h-24 object-contain mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-1">{c.title}</h3>
-                <p className="text-gray-600">{c.issuer}</p>
-                <p className="text-gray-500 text-sm mb-4">{c.date}</p>
-                <a href={c.credentialUrl} className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700">View Credential</a>
-              </div>
-            ))}
+        </div>
+      ))}
+    </div>
+  );
+
+  const CertificationsDisplay = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-fade-in-up delay-400">
+      {certifications.map(cert => (
+        <div key={cert.id}
+          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-300 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center text-center p-6">
+          <img
+            src={cert.image}
+            alt={cert.title}
+            className="w-24 h-24 object-contain mb-4"
+            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x100/E0E0E0/333333?text=Cert'; }}
+          />
+          <h3 className="text-xl font-bold text-gray-900 mb-2">{cert.title}</h3>
+          <p className="text-gray-700 text-sm mb-1">{cert.issuer}</p>
+          <p className="text-gray-600 text-xs mb-4">{cert.date}</p>
+          {cert.credentialUrl && (
+            <a
+              href={cert.credentialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 text-sm"
+            >
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd"
+                  d="M12.586 4.586a2 2 0 112.828 2.828l-3.353 3.354a1 1 0 01-1.414 0L8.414 8.414a1 1 0 010-1.414l3.353-3.354zM10 12a2 2 0 100-4 2 2 0 000 4z"
+                  clipRule="evenodd"></path>
+              </svg>
+              View Credential
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  const TechnologiesDisplay = () => {
+    return (
+      <div className="flex flex-wrap justify-center gap-6 animate-fade-in-up delay-400">
+        {technologies.map(tech => (
+          <div key={tech.name}
+            className="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-xl border border-blue-300 w-32 h-32 justify-center transition-transform duration-300 hover:scale-105">
+            {tech.icon.startsWith('/icons/') ? (
+              <img src={tech.icon} alt={tech.name} className="w-12 h-12 mb-2" />
+            ) : (
+              <span className="text-5xl mb-2">{tech.icon}</span>
+            )}
+            <p className="text-lg font-semibold text-gray-800">{tech.name}</p>
           </div>
-        );
-      case 'Technologies':
-        return (
-          <div className="flex flex-wrap justify-center gap-6">
-            {technologies.map((t) => (
-              <div key={t.name} className="flex flex-col items-center bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg w-32 h-32 hover:scale-105 transition-all">
-                <img src={t.icon} alt={t.name} className="w-12 h-12 mb-2" />
-                <p className="text-gray-800 font-semibold">{t.name}</p>
-              </div>
-            ))}
-          </div>
-        );
-      default:
-        return null;
-    }
+        ))}
+      </div>
+    );
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-100 to-blue-50 py-24 flex flex-col items-center overflow-hidden">
-      <h2 className="text-5xl font-extrabold text-blue-700 mb-12">My Digital Creations & Expertise</h2>
+    <section id="technical-prowess" className="py-24 px-4 bg-gray-100 text-gray-900 min-h-screen">
+      <div className="container mx-auto max-w-7xl">
+        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-20 animate-fade-in-up">My Digital Creations & Expertise</h2>
 
-      <div className="relative w-full max-w-5xl flex justify-center items-center px-4">
-        <button
-          onClick={() => paginate(-1)}
-          className="absolute left-0 md:left-[-80px] bg-white/50 p-3 rounded-full hover:bg-blue-100 transition"
-        >
-          <ChevronLeft size={28} />
-        </button>
-
-        <div className="w-full h-[32rem] flex items-center justify-center perspective-[1000px]">
-          <AnimatePresence mode="popLayout" custom={direction}>
-            <motion.div
-              key={activeIndex}
-              custom={direction}
-              variants={fadeVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: 'spring', stiffness: 120, damping: 25 },
-                opacity: { duration: 0.3 },
-                rotateY: { duration: 0.5 },
-              }}
-              className="absolute w-full max-w-5xl bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-200 p-10"
+        <div className="flex flex-wrap justify-center gap-6 mb-16 animate-fade-in-up delay-200">
+          {tabs.map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-8 py-4 rounded-full font-extrabold text-xl transition-all duration-300 border-4
+                ${activeTab === tab
+                  ? 'bg-blue-700 border-blue-700 text-white shadow-lg transform scale-105'
+                  : 'bg-transparent border-blue-400 text-blue-700 hover:bg-blue-100 hover:border-blue-500 hover:text-blue-800'
+                }`}
             >
-              <div className="flex items-center justify-center mb-6 gap-2 text-blue-800 text-2xl font-bold">
-                {tabs[activeIndex].icon}
-                {tabs[activeIndex].name}
-              </div>
-              {renderContent()}
-            </motion.div>
-          </AnimatePresence>
+              {tab}
+            </button>
+          ))}
         </div>
 
-        <button
-          onClick={() => paginate(1)}
-          className="absolute right-0 md:right-[-80px] bg-white/50 p-3 rounded-full hover:bg-blue-100 transition"
-        >
-          <ChevronRight size={28} />
-        </button>
+        {activeTab === 'Projects' && <ProjectsDisplay />}
+        {activeTab === 'Certifications' && <CertificationsDisplay />}
+        {activeTab === 'Technologies' && <TechnologiesDisplay />}
       </div>
     </section>
   );
