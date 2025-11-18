@@ -4,11 +4,7 @@ const CreativeCorner = () => {
   return (
     <section id="creative-corner" className="py-24 px-4 bg-gray-50 text-gray-900 min-h-screen">
       <div className="container mx-auto max-w-7xl">
-        
-        {/* Main Section Title */}
-        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-16 animate-fade-in-up">
-          Creative Corner & Passions
-        </h2>
+      
 
         {/* UNIFIED CARD */}
         <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-blue-300 animate-fade-in-up">
@@ -17,13 +13,27 @@ const CreativeCorner = () => {
           {/* PART 1: 3D DESIGN & INTERACTIVE MODELS */}
           {/* -------------------------------------------------- */}
           <div className="mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-              3D Design with Blender
-            </h3>
-            <p className="text-lg text-gray-700 mb-10 text-center max-w-3xl mx-auto">
-              My passion for design extends into the third dimension. Here are some interactive 3D models 
-              and animation renders I have created.
-            </p>
+            
+            {/* Header: Logo Left + Text Left */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-10">
+                {/* Blender Logo */}
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" 
+                    alt="Blender Logo" 
+                    className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                />
+
+                {/* Text Wrapper */}
+                <div className="text-left">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                        3D Design and Animations with Blender
+                    </h3>
+                    <p className="text-lg text-gray-700 max-w-3xl">
+                        My passion for design extends into the third dimension. Here are some interactive 3D models 
+                        and animation renders I have created.
+                    </p>
+                </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto">
               {/* Model 1 */}
@@ -75,7 +85,7 @@ const CreativeCorner = () => {
                   </video>
                   {/* Optional Overlay for Title */}
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
-                     <h4 className="text-white font-bold text-lg">Animation Project One</h4>
+                      <h4 className="text-white font-bold text-lg">Animation Project One</h4>
                   </div>
                 </div>
               </div>
@@ -94,7 +104,7 @@ const CreativeCorner = () => {
                   </video>
                   {/* Optional Overlay for Title */}
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
-                     <h4 className="text-white font-bold text-lg">Animation Project Two</h4>
+                      <h4 className="text-white font-bold text-lg">Animation Project Two</h4>
                   </div>
                 </div>
               </div>
