@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const TechnicalProwess = () => {
-  const [activeTab, setActiveTab] = useState('Projects');
-
-  const tabs = ['Projects', 'Certifications', 'Technologies'];
-
+  // Data Arrays (Kept exactly as provided)
   const projects = [
     {
       id: 1,
-      title: 'Personal Portfolio Website (This one!)',
+      title: 'Personal Portfolio Website',
       category: 'Web Development',
       tech: ['React', 'Tailwind CSS', 'JavaScript'],
       description: 'A responsive and dynamic portfolio showcasing diverse skills and projects.',
@@ -21,7 +18,7 @@ const TechnicalProwess = () => {
       title: 'CodeHub: A learning Platform',
       category: 'Web Development',
       tech: ['React', 'Tailwind CSS', 'JavaScript'],
-      description: ' A comprehensive learning platform designed to take coders from beginner to pro.',
+      description: 'A comprehensive learning platform designed to take coders from beginner to pro.',
       github: 'https://github.com/Prathvi321/CodeHub',
       demo: 'https://codehub321.netlify.app/',
       image: '/CodeHubpage.png',
@@ -42,7 +39,7 @@ const TechnicalProwess = () => {
   const certifications = [
     {
       id: 1,
-      title: 'Complete 2025 Python Bootcamp: Learn Python from Scratch',
+      title: 'Complete 2025 Python Bootcamp',
       issuer: 'Udemy',
       date: 'Oct 2024',
       credentialUrl: 'https://www.udemy.com/certificate/UC-2692602b-cf0a-4131-913a-d1ea9b644206',
@@ -69,150 +66,119 @@ const TechnicalProwess = () => {
     { name: 'Unreal Engine', category: 'Game Engines', icon: '/icons/icons8-unreal-engine.svg' },
   ];
 
-  const ProjectsDisplay = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-fade-in-up delay-400">
-      {projects.map(project => (
-        <div key={project.id}
-          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-300 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
-          {project.isVideo ? (
-            <video
-              src={project.image}
-              className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
-              controls
-              playsInline
-            />
-          ) : (
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
-              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/E0E0E0/333333?text=Image+Not+Found'; }}
-            />
-          )}
-          <div className="p-7">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
-            <p className="text-gray-700 text-sm mb-5">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-5">
-              {project.tech.map(tech => (
-                <span key={tech}
-                  className="bg-blue-200 text-blue-800 text-xs px-3 py-1 rounded-full">{tech}</span>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300"
-              >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd"
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.835.09-.647.35-1.089.636-1.338-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.39-1.988 1.029-2.688-.103-.253-.446-1.272.097-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.099 2.651.64.7 1.028 1.592 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.579.688.481C21.137 20.281 24 16.527 24 12.017 24 6.484 19.522 2 14 2H12z"
-                    clipRule="evenodd" />
-                </svg>
-                GitHub
-              </a>
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-300"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                  </svg>
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
+  // Reusable Section Header Component
+  const SectionTitle = ({ title, subtitle }) => (
+    <div className="mb-12 text-center">
+      <h3 className="text-3xl font-bold text-gray-900 relative inline-block pb-2">
+        {title}
+        <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full"></span>
+      </h3>
+      {subtitle && <p className="text-gray-600 mt-4 max-w-2xl mx-auto">{subtitle}</p>}
     </div>
   );
-
-  const CertificationsDisplay = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-fade-in-up delay-400">
-      {certifications.map(cert => (
-        <div key={cert.id}
-          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-300 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center text-center p-6">
-          <img
-            src={cert.image}
-            alt={cert.title}
-            className="w-24 h-24 object-contain mb-4"
-            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x100/E0E0E0/333333?text=Cert'; }}
-          />
-          <h3 className="text-xl font-bold text-gray-900 mb-2">{cert.title}</h3>
-          <p className="text-gray-700 text-sm mb-1">{cert.issuer}</p>
-          <p className="text-gray-600 text-xs mb-4">{cert.date}</p>
-          {cert.credentialUrl && (
-            <a
-              href={cert.credentialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 text-sm"
-            >
-              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd"
-                  d="M12.586 4.586a2 2 0 112.828 2.828l-3.353 3.354a1 1 0 01-1.414 0L8.414 8.414a1 1 0 010-1.414l3.353-3.354zM10 12a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"></path>
-              </svg>
-              View Credential
-            </a>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-
-  const TechnologiesDisplay = () => {
-    return (
-      <div className="flex flex-wrap justify-center gap-6 animate-fade-in-up delay-400">
-        {technologies.map(tech => (
-          <div key={tech.name}
-            className="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-xl border border-blue-300 w-32 h-32 justify-center transition-transform duration-300 hover:scale-105">
-            {tech.icon.startsWith('/icons/') ? (
-              <img src={tech.icon} alt={tech.name} className="w-12 h-12 mb-2" />
-            ) : (
-              <span className="text-5xl mb-2">{tech.icon}</span>
-            )}
-            <p className="text-lg font-semibold text-gray-800">{tech.name}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   return (
-    <section id="technical-prowess" className="py-24 px-4 bg-gray-100 text-gray-900 min-h-screen">
-      <div className="container mx-auto max-w-7xl">
-        <h2 className="text-5xl font-extrabold text-center text-blue-600 mb-20 animate-fade-in-up">My Digital Creations & Expertise</h2>
+    <section id="technical-prowess" className="bg-gray-50 text-gray-900">
+      
+      {/* Main Header */}
+      <div className="py-20 bg-blue-900 text-white text-center">
+        <div className="container mx-auto px-4">
+          <h2 className="text-5xl font-extrabold mb-4">Technical Prowess</h2>
+          <p className="text-blue-200 text-xl">My digital creations, toolkit, and credentials.</p>
+        </div>
+      </div>
 
-        <div className="flex flex-wrap justify-center gap-6 mb-16 animate-fade-in-up delay-200">
-          {tabs.map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-8 py-4 rounded-full font-extrabold text-xl transition-all duration-300 border-4
-                ${activeTab === tab
-                  ? 'bg-blue-700 border-blue-700 text-white shadow-lg transform scale-105'
-                  : 'bg-transparent border-blue-400 text-blue-700 hover:bg-blue-100 hover:border-blue-500 hover:text-blue-800'
-                }`}
-            >
-              {tab}
-            </button>
+      {/* 1. PROJECTS SECTION */}
+      <div className="py-24 container mx-auto max-w-7xl px-4">
+        <SectionTitle title="Featured Projects" subtitle="A selection of my recent work in Web Development and Automation." />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {projects.map(project => (
+            <div key={project.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+              <div className="relative overflow-hidden">
+                {project.isVideo ? (
+                  <video src={project.image} className="w-full h-56 object-cover" controls playsInline />
+                ) : (
+                  <img src={project.image} alt={project.title} className="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500" 
+                  onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/E0E0E0/333333?text=Image+Not+Found'; }}/>
+                )}
+                <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                  {project.category}
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{project.title}</h3>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">{project.description}</p>
+                
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map(tech => (
+                    <span key={tech} className="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded border border-gray-200">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="flex gap-3">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center px-4 py-2 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+                   {/* Simple GitHub Icon */}
+                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                   Code
+                  </a>
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-
-        {activeTab === 'Projects' && <ProjectsDisplay />}
-        {activeTab === 'Certifications' && <CertificationsDisplay />}
-        {activeTab === 'Technologies' && <TechnologiesDisplay />}
       </div>
+
+      {/* 2. TECHNOLOGIES SECTION (Dark Background for Contrast) */}
+      <div className="py-24 bg-white border-y border-gray-200">
+        <div className="container mx-auto max-w-7xl px-4">
+           <SectionTitle title="Tech Stack" subtitle="The tools and technologies I use to bring ideas to life." />
+           
+           <div className="flex flex-wrap justify-center gap-6">
+             {technologies.map(tech => (
+               <div key={tech.name} className="flex flex-col items-center justify-center w-28 h-28 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-300 hover:shadow-lg transition-all duration-300 group">
+                  {tech.icon.startsWith('/icons/') ? (
+                    <img src={tech.icon} alt={tech.name} className="w-10 h-10 mb-3 group-hover:scale-110 transition-transform" />
+                  ) : (
+                    <span className="text-3xl mb-3">{tech.icon}</span>
+                  )}
+                  <span className="text-xs font-semibold text-gray-600 group-hover:text-blue-600">{tech.name}</span>
+               </div>
+             ))}
+           </div>
+        </div>
+      </div>
+
+      {/* 3. CERTIFICATIONS SECTION */}
+      <div className="py-24 container mx-auto max-w-7xl px-4">
+        <SectionTitle title="Certifications" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+          {certifications.map(cert => (
+            <div key={cert.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-start space-x-4 hover:shadow-md transition-shadow">
+               <img src={cert.image} alt="issuer" className="w-16 h-16 object-contain rounded-lg bg-gray-50 p-1" 
+               onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x100/E0E0E0/333333?text=Cert'; }}/>
+               <div>
+                 <h4 className="font-bold text-gray-900 leading-tight">{cert.title}</h4>
+                 <p className="text-sm text-gray-500 mt-1">{cert.issuer} • {cert.date}</p>
+                 {cert.credentialUrl && (
+                   <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline">
+                     Verify Credential →
+                   </a>
+                 )}
+               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </section>
   );
 };
