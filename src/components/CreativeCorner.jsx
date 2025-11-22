@@ -15,19 +15,19 @@ const VIDEOS = [
     id: 2,
     title: "Fire",
     // Replace with: src: "/Ship in a Jar inspired from Pirates of Caribbean.mp4"
-    src: "https://videos.pexels.com/video-files/5091624/5091624-sd_640_360_24fps.mp4", 
+    src: "https://videos.pexels.com/video-files/5091624/5091624-sd_640_360_24fps.mp4",
   },
   {
     id: 3,
     title: "Mechanical Keyboard",
     // Replace with: src: "/Key Board animation.mkv"
-    src: "/Key Board animation.mkv", 
+    src: "/Key Board animation.mkv",
   },
   {
     id: 4,
     title: "Abstract Flow",
     // Extra mock video to demonstrate the loop better
-    src: "/Ship in a Jar inspired from Pirates of Caribbean.mp4", 
+    src: "/Ship in a Jar inspired from Pirates of Caribbean.mp4",
   }
 ];
 
@@ -39,7 +39,7 @@ const CreativeCorner = () => {
   // ---------------------------------------------------------
   // CAROUSEL LOGIC
   // ---------------------------------------------------------
-  
+
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % VIDEOS.length);
   };
@@ -49,64 +49,41 @@ const CreativeCorner = () => {
   };
 
   // Calculate the visual offset for each slide relative to the active one
-  // Modified to be a pure horizontal slide without 3D rotation
+  // Enhanced with Circular 3D Rotation (Orbit effect)
   const getSlideStyles = (index) => {
     const total = VIDEOS.length;
     // Calculate shortest distance considering wrap-around
     let offset = (index - activeIndex + total) % total;
     if (offset > total / 2) offset -= total;
 
-    // Base Styles
-    const styles = {
-      zIndex: 10,
-      opacity: 0,
-      transform: 'translateX(0) scale(0.8)',
-      filter: 'blur(4px) brightness(0.5)',
-      pointerEvents: 'none',
+    // Circular Orbit Logic
+    const angleDeg = offset * (360 / total);
+    const angleRad = angleDeg * (Math.PI / 180);
+    const radius = 400; // Distance from center
+
+    // Calculate opacity based on angle (fade out back items)
+    // Math.cos(0) = 1 (front), Math.cos(90) = 0 (side/back)
+    // We adjust it so side items are still visible
+    const opacity = Math.max(0, (Math.cos(angleRad) + 0.5) / 1.5);
+
+    // Z-Index based on depth (closer items on top)
+    const zIndex = Math.round(100 * Math.cos(angleRad));
+
+    return {
+      zIndex: zIndex,
+      opacity: opacity,
+      // Rotate container to angle, push out by radius, then counter-rotate item to face front
+      transform: `rotateY(${angleDeg}deg) translateZ(${radius}px) rotateY(${-angleDeg}deg)`,
+      filter: `blur(${Math.abs(offset) * 2}px) brightness(${0.5 + 0.5 * Math.cos(angleRad)})`,
+      pointerEvents: offset === 0 ? 'auto' : 'none',
+      transition: 'all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)',
     };
-
-    // Active Slide (Center)
-    if (offset === 0) {
-      styles.zIndex = 50;
-      styles.opacity = 1;
-      styles.transform = 'translateX(0) scale(1)';
-      styles.filter = 'blur(0px) brightness(1)';
-      styles.pointerEvents = 'auto';
-    } 
-    // Next Slide (Right)
-    else if (offset === 1) {
-      styles.zIndex = 40;
-      styles.opacity = 0.8;
-      styles.transform = 'translateX(65%) scale(0.85)';
-      styles.filter = 'blur(2px) brightness(0.7)';
-    } 
-    // Previous Slide (Left)
-    else if (offset === -1) {
-      styles.zIndex = 40;
-      styles.opacity = 0.8;
-      styles.transform = 'translateX(-65%) scale(0.85)';
-      styles.filter = 'blur(2px) brightness(0.7)';
-    }
-    // Far Right (Hidden/Backing)
-    else if (offset === 2) {
-      styles.zIndex = 30;
-      styles.opacity = 0; // Fade out completely
-      styles.transform = 'translateX(130%) scale(0.7)';
-    }
-    // Far Left (Hidden/Backing)
-    else if (offset === -2) {
-      styles.zIndex = 30;
-      styles.opacity = 0;
-      styles.transform = 'translateX(-130%) scale(0.7)';
-    }
-
-    return styles;
   };
 
   // Handle Mouse Wheel Scroll
   const handleWheel = (e) => {
     if (!isHovered) return;
-    
+
     if (throttleRef.current) return;
     throttleRef.current = true;
 
@@ -118,7 +95,7 @@ const CreativeCorner = () => {
 
     setTimeout(() => {
       throttleRef.current = false;
-    }, 600); 
+    }, 600);
   };
 
   // ---------------------------------------------------------
@@ -190,16 +167,16 @@ const CreativeCorner = () => {
             <p className="text-gray-500 text-sm mt-2">Scroll or swipe to slide through the collection</p>
           </div>
 
-          <div 
+          <div
             className="relative w-full max-w-6xl mx-auto h-[450px] md:h-[500px] flex items-center justify-center overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onWheel={handleWheel}
           >
-            
+
             {/* Carousel Track */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              
+            <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}>
+
               {VIDEOS.map((video, index) => {
                 const styles = getSlideStyles(index);
 
@@ -222,7 +199,7 @@ const CreativeCorner = () => {
                       muted
                       playsInline
                       ref={(el) => {
-                         if(el) el.play().catch(() => {}); 
+                        if (el) el.play().catch(() => { });
                       }}
                     >
                       <source src={video.src} type="video/mp4" />
@@ -234,7 +211,7 @@ const CreativeCorner = () => {
                         <h4 className="text-white text-xl font-bold tracking-wide drop-shadow-md">{video.title}</h4>
                       </div>
                     </div>
-                    
+
                     {/* Glossy Shine Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none mix-blend-overlay"></div>
                   </div>
@@ -244,14 +221,14 @@ const CreativeCorner = () => {
 
             {/* Navigation Controls */}
             <div className="absolute bottom-4 flex gap-4 z-50">
-               <button 
+              <button
                 onClick={prevSlide}
                 className="p-3 rounded-full bg-white hover:bg-gray-100 text-gray-900 shadow-lg transition-all hover:scale-110 active:scale-95 border border-gray-200"
                 aria-label="Previous"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
-              <button 
+              <button
                 onClick={nextSlide}
                 className="p-3 rounded-full bg-white hover:bg-gray-100 text-gray-900 shadow-lg transition-all hover:scale-110 active:scale-95 border border-gray-200"
                 aria-label="Next"
