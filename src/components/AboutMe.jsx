@@ -37,55 +37,9 @@ const AboutMe = () => {
             <p className="mb-6">
               My technical acumen is further amplified by strong <span
                 className="font-semibold text-blue-600">communication skills</span> and proven <span
-                className="font-semibold text-blue-600">leadership abilities</span>, honed through various
+                  className="font-semibold text-blue-600">leadership abilities</span>, honed through various
               academic and extracurricular engagements.
             </p>
-          </div>
-        </div>
-
-        <h3 className="text-4xl font-bold text-center text-blue-600 mb-16 animate-fade-in-up">Education Journey</h3>
-
-        <div className="py-24 px-4 bg-gray-50 flex items-center justify-center font-inter rounded-2xl border-2 border-blue-300">
-          <div className="flex flex-col md:flex-row justify-center items-center md:space-x-8 lg:space-x-16 px-4 max-w-6xl mx-auto">
-            <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 mb-8 md:mb-0 w-full md:w-1/3 animate-fade-in-up delay-200 min-h-[220px]">
-              <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4">
-                <span className="text-2xl text-white">📚</span>
-              </div>
-              <p className="mb-2 text-base text-blue-600">2022</p>
-              <h4 className="mb-2 font-bold text-xl text-gray-900">10th Grade</h4>
-              <p className="text-sm leading-snug text-gray-700">St. Mary's Convent, Sagar</p>
-              <p className="text-sm leading-snug text-gray-700">Scored: 78%</p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 mb-8 md:mb-0 w-full md:w-1/3 animate-fade-in-up delay-200 min-h-[220px]">
-              <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4">
-                <span className="text-2xl text-white">📚</span>
-              </div>
-              <p className="mb-2 text-base text-blue-600">2024</p>
-              <h4 className="mb-2 font-bold text-xl text-gray-900">12th Grade</h4>
-              <p className="text-sm leading-snug text-gray-700">Kendriya Vidyalaya Sagar</p>
-              <p className="text-sm leading-snug text-gray-700">Scored: 76%</p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 mb-8 md:mb-0 w-full md:w-1/3 animate-fade-in-up delay-400 min-h-[220px]">
-              <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4">
-                <span className="text-2xl text-white">💻</span>
-              </div>
-              <p className="mb-2 text-base text-blue-600">2024 - 2025</p>
-              <h4 className="mb-2 font-bold text-xl text-gray-900">DCA</h4>
-              <p className="text-sm leading-snug text-gray-700">Makhanlal Chaturvedi University Bhopal</p>
-              <p className="text-sm leading-snug text-gray-700">CGPA: [Yet to be declared]</p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-xl border border-blue-300 w-full md:w-1/3 animate-fade-in-up delay-600 min-h-[220px]">
-              <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-lg -mt-12 mb-4">
-                <span className="text-2xl text-white">🎓</span>
-              </div>
-              <p className="mb-2 text-base text-blue-600">2024 - 2028</p>
-              <h4 className="mb-2 font-bold text-xl text-gray-900">B.Tech (IT)</h4>
-              <p className="text-sm leading-snug text-gray-700">RGPV Bhopal</p>
-              <p className="text-sm leading-snug text-gray-700">CGPA: [Yet to be declared]</p>
-            </div>
           </div>
         </div>
       </div>
