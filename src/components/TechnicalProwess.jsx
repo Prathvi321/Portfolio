@@ -45,6 +45,14 @@ const TechnicalProwess = () => {
       date: 'Oct 2024',
       credentialUrl: 'https://www.udemy.com/certificate/UC-2692602b-cf0a-4131-913a-d1ea9b644206',
       image: 'https://udemy-certificate.s3.amazonaws.com/image/UC-2692602b-cf0a-4131-913a-d1ea9b644206.jpg?v=1759585413000',
+    },
+    {
+      id: 1,
+      title: 'SQL for Beginners: Learn SQL using MySQL and Database Design Course',
+      issuer: 'Scaler',
+      date: 'Nov 2025',
+      credentialUrl: 'https://moonshot.scaler.com/s/sl/HoIjpqcf6m?_gl=1*aig3rk*_gcl_au*MTQ1MjM0MTExNS4xNzYxNzU1MjQ1*FPAU*MTQ1MjM0MTExNS4xNzYxNzU1MjQ1*_ga*MTM3MDM0NzA2OC4xNzYxNzU1MjQ1*_ga_53S71ZZG1X*czE3NjM4MTk3MzEkbzkkZzEkdDE3NjM4MTk3NjIkajI5JGwwJGg1ODUwMjM2NTg.',
+      image: 'https://moonshot.scaler.com/s/image/sl/HoIjpqcf6m?scope=body',
     }
   ];
 
