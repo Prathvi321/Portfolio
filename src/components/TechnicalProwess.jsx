@@ -41,13 +41,13 @@ const TechnicalProwess = () => {
     {
       id: 1,
       title: 'Complete 2025 Python Bootcamp',
-      issuer: 'Udemy',
-      date: 'Oct 2024',
-      credentialUrl: 'https://www.udemy.com/certificate/UC-2692602b-cf0a-4131-913a-d1ea9b644206',
-      image: 'https://udemy-certificate.s3.amazonaws.com/image/UC-2692602b-cf0a-4131-913a-d1ea9b644206.jpg?v=1759585413000',
+      issuer: 'Scaler',
+      date: 'Dec 2025',
+      credentialUrl: 'https://moonshot.scaler.com/s/sl/vt-e8pDMLo?_gl=1*10avwzy*_gcl_au*MjA1MzYxODUwMy4xNzY1NDYwNTg4*FPAU*MjA1MzYxODUwMy4xNzY1NDYwNTg4*_ga*MTcwODY5NTAxMS4xNzY1NDYwNTg4*_ga_53S71ZZG1X*czE3NjU0NjA1ODckbzEkZzEkdDE3NjU0NjU0ODkkajQxJGwwJGgxMTU5MDgzNTc3',
+      image: 'https://moonshot.scaler.com/s/image/sl/vt-e8pDMLo?scope=body',
     },
     {
-      id: 1,
+      id: 2,
       title: 'SQL for Beginners: Learn SQL using MySQL and Database Design Course',
       issuer: 'Scaler',
       date: 'Nov 2025',
