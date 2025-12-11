@@ -40,19 +40,19 @@ const TechnicalProwess = () => {
   const certifications = [
     {
       id: 1,
-      title: 'Complete 2025 Python Bootcamp',
-      issuer: 'Scaler',
-      date: 'Dec 2025',
-      credentialUrl: 'https://moonshot.scaler.com/s/sl/vt-e8pDMLo?_gl=1*10avwzy*_gcl_au*MjA1MzYxODUwMy4xNzY1NDYwNTg4*FPAU*MjA1MzYxODUwMy4xNzY1NDYwNTg4*_ga*MTcwODY5NTAxMS4xNzY1NDYwNTg4*_ga_53S71ZZG1X*czE3NjU0NjA1ODckbzEkZzEkdDE3NjU0NjU0ODkkajQxJGwwJGgxMTU5MDgzNTc3',
-      image: 'https://moonshot.scaler.com/s/image/sl/vt-e8pDMLo?scope=body',
-    },
-    {
-      id: 2,
       title: 'SQL for Beginners: Learn SQL using MySQL and Database Design Course',
       issuer: 'Scaler',
       date: 'Nov 2025',
       credentialUrl: 'https://moonshot.scaler.com/s/sl/HoIjpqcf6m?_gl=1*aig3rk*_gcl_au*MTQ1MjM0MTExNS4xNzYxNzU1MjQ1*FPAU*MTQ1MjM0MTExNS4xNzYxNzU1MjQ1*_ga*MTM3MDM0NzA2OC4xNzYxNzU1MjQ1*_ga_53S71ZZG1X*czE3NjM4MTk3MzEkbzkkZzEkdDE3NjM4MTk3NjIkajI5JGwwJGg1ODUwMjM2NTg.',
       image: 'https://moonshot.scaler.com/s/image/sl/HoIjpqcf6m?scope=body',
+    },
+    {
+      id: 2,
+      title: 'Complete 2025 Python Bootcamp',
+      issuer: 'Scaler',
+      date: 'Dec 2025',
+      credentialUrl: 'https://moonshot.scaler.com/s/sl/vt-e8pDMLo?_gl=1*10avwzy*_gcl_au*MjA1MzYxODUwMy4xNzY1NDYwNTg4*FPAU*MjA1MzYxODUwMy4xNzY1NDYwNTg4*_ga*MTcwODY5NTAxMS4xNzY1NDYwNTg4*_ga_53S71ZZG1X*czE3NjU0NjA1ODckbzEkZzEkdDE3NjU0NjU0ODkkajQxJGwwJGgxMTU5MDgzNTc3',
+      image: 'https://moonshot.scaler.com/s/image/sl/vt-e8pDMLo?scope=body',
     }
   ];
 
