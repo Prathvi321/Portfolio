@@ -26,8 +26,12 @@ const VIDEOS = [
   {
     id: 4,
     title: "Abstract Flow",
-    // Extra mock video to demonstrate the loop better
     src: "/Ship in a Jar inspired from Pirates of Caribbean.mp4",
+  },
+  {
+    id: 5,
+    title: "Car Fall Animation",
+    src: "/Video Project1.mp4",
   }
 ];
 
