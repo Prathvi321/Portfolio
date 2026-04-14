@@ -45,30 +45,27 @@ const TechnicalProwess = () => {
   const certifications = [
     {
       id: 1,
-      title:
-        "SQL for Beginners: Learn SQL using MySQL and Database Design Course",
-      issuer: "Scaler",
-      date: "Nov 2025",
-      credentialUrl:
-        "https://moonshot.scaler.com/s/sl/HoIjpqcf6m?_gl=1*aig3rk*_gcl_au*MTQ1MjM0MTExNS4xNzYxNzU1MjQ1",
-      image: "https://moonshot.scaler.com/s/image/sl/HoIjpqcf6m?scope=body",
+      title: "C++ Course: Learn the Essentials",
+      date: "17 Feb 2026",
+      image: "/C++ Course: Learn the Essentials.png",
     },
     {
       id: 2,
-      title: "Complete 2025 Python Bootcamp",
-      issuer: "Scaler",
-      date: "Dec 2025",
-      credentialUrl:
-        "https://moonshot.scaler.com/s/sl/vt-e8pDMLo?_gl=1*10avwzy",
-      image: "https://moonshot.scaler.com/s/image/sl/vt-e8pDMLo?scope=body",
+      title: "Python and SQL for Data Science",
+      date: "14 Feb 2026",
+      image: "/Python and SQL for Data Science.png",
     },
     {
       id: 3,
-      title: "Python for Data Science",
-      issuer: "Scaler",
-      date: "Feb 2026",
-      credentialUrl: "https://moonshot.scaler.com/s/sl/em9PWV54ig",
-      image: "https://moonshot.scaler.com/s/image/sl/em9PWV54ig?scope=body",
+      title: "Python Course for Beginners With Certification: Mastering the Essentials",
+      date: "11 Dec 2025",
+      image: "/Python Course for Beginners With Certification: Mastering the Essentials.png",
+    },
+    {
+      id: 4,
+      title: "SQL for Beginners: Learn SQL using MySQL and Database Design Course",
+      date: "6 Nov 2025",
+      image: "/SQL for Beginners: Learn SQL using MySQL and Database Design Course.png",
     },
   ];
 
@@ -194,20 +191,8 @@ const TechnicalProwess = () => {
                     <div className="font-bold">{cert.title}</div>
 
                     <div className="text-xs text-gray-500">
-                      {cert.issuer} • {cert.date}
+                      {cert.date}
                     </div>
-
-                    {/* ✅ VIEW / VERIFY CREDENTIAL LINK RESTORED */}
-                    {cert.credentialUrl && (
-                      <a
-                        href={cert.credentialUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-blue-600 font-semibold hover:underline mt-1 block"
-                      >
-                        Verify Credential
-                      </a>
-                    )}
                   </div>
                 </div>
               ))}
@@ -243,7 +228,7 @@ const TechnicalProwess = () => {
             <div className="mt-4">
               <div className="font-bold text-lg">{selectedCert.title}</div>
               <div className="text-sm text-gray-500">
-                {selectedCert.issuer} • {selectedCert.date}
+                {selectedCert.date}
               </div>
             </div>
           </div>
