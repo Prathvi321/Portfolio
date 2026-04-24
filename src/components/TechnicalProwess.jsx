@@ -142,6 +142,29 @@ const TechnicalProwess = () => {
         problemSolved: "Used Google Sheets + Apps Script as a lightweight, zero-cost database. Managed user form data efficiently and switched from Zapier to the Resend API for a more scalable, free email automation solution."
       }
     },
+    {
+      id: 5,
+      title: "Utility Box: AI-Powered Multi-Tool",
+      category: "Web Development",
+      tech: ["React", "Gemini API", "remove.bg API", "JavaScript"],
+      description: "A multi-utility AI-powered platform integrating multiple APIs — combining intelligent responses, background removal, and more in one place.",
+      github: "https://github.com/Prathvi321/Utility-Box",
+      demo: "https://utilityboxy.netlify.app",
+      media: [
+        { type: "image", url: "/Projects/Utility Box/ChatGPT Image Apr 24, 2026, 08_33_03 PM.png" },
+        { type: "image", url: "/Projects/Utility Box/Screenshot from 2026-04-24 20-26-04.png" },
+        { type: "image", url: "/Projects/Utility Box/Screenshot from 2026-04-24 20-26-14.png" },
+        { type: "image", url: "/Projects/Utility Box/Screenshot from 2026-04-24 20-26-27.png" },
+        { type: "image", url: "/Projects/Utility Box/Screenshot from 2026-04-24 20-26-37.png" },
+        { type: "image", url: "/Projects/Utility Box/Screenshot from 2026-04-24 20-27-30.png" }
+      ],
+      details: {
+        whatIDid: "Built a multi-utility AI-powered tool by integrating Gemini API for intelligent responses and remove.bg API for background removal, combining different features into a single cohesive platform.",
+        approach: "Started as an experiment with AI tools but evolved into a real engineering challenge. Debugged AI-generated errors, refactored and optimized code, handled API failures and edge cases, and made everything work together smoothly.",
+        vision: "To move beyond just 'using AI' to actually engineering with AI — understanding how to build reliable systems that leverage AI capabilities while handling the real-world complexity AI alone can't solve.",
+        problemSolved: "AI can generate code, but it doesn't always work correctly. This project tackled the gap between AI-generated output and production-ready software by debugging, refactoring, and building robust error handling around multiple API integrations."
+      }
+    },
   ];
 
   const certifications = [
