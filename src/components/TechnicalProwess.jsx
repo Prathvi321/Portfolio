@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 const TechnicalProwess = () => {
   const [selectedCert, setSelectedCert] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isHoveringSlider, setIsHoveringSlider] = useState(false);
   const sliderRef = useRef(null);
 
   // Lock body scroll when any modal is open
@@ -32,6 +33,32 @@ const TechnicalProwess = () => {
     slider.addEventListener('wheel', handleWheel, { passive: false });
     return () => slider.removeEventListener('wheel', handleWheel);
   }, [selectedProject]);
+
+  const scrollSlider = (direction) => {
+    if (sliderRef.current) {
+      const slider = sliderRef.current;
+      const scrollAmount = slider.clientWidth;
+      
+      if (direction === 1 && slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else if (direction === -1 && slider.scrollLeft <= 10) {
+        slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+      }
+    }
+  };
+
+  // Auto-scroll effect
+  useEffect(() => {
+    if (!selectedProject || selectedProject.media.length <= 1 || isHoveringSlider) return;
+
+    const intervalId = setInterval(() => {
+      scrollSlider(1);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [selectedProject, isHoveringSlider]);
 
   const projects = [
     {
@@ -89,6 +116,30 @@ const TechnicalProwess = () => {
         approach: "Automated the execution of shell commands through Python's subprocess module, parsing the output into a user-friendly interface.",
         vision: "To lower the barrier to entry for version control, helping beginners use Git without the steep command-line learning curve.",
         problemSolved: "Eliminated the friction of memorizing Git commands for simple tasks like committing, pushing, and pulling, reducing workflow errors."
+      }
+    },
+    {
+      id: 4,
+      title: "HVEV - Client Production Website",
+      category: "Web Development",
+      tech: ["React", "Vercel", "Google Apps Script", "Resend", "Git"],
+      description: "A real-world production website built and deployed for a client running at almost ₹0 cost using modern integrations.",
+      github: "https://github.com/KISAAN-MITRA/KISAAN-MITRA-",
+      demo: "https://www.hvev.in",
+      media: [
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-3533.jpg" },
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-4113.jpg" },
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-5119.jpg" },
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-5762.jpg" },
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-6394.jpg" },
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-7136.jpg" },
+        { type: "image", url: "/Projects/HVEV Client Project/linkedin-image-1777031455-9336.jpg" }
+      ],
+      details: {
+        whatIDid: "Collaborated on the frontend initially, then took full ownership of the backend logic, automated email responses, and deployment. Managed the complete GitHub workflow and connected the custom domain.",
+        approach: "The interesting challenge was the client's constraint: they wanted everything to run at minimal to zero cost. I architected a system using free tiers of modern serverless tools instead of traditional paid hosting.",
+        vision: "To deliver a highly functional, scalable, and professional website without the overhead of monthly database and hosting subscriptions, focusing on real-world constraints.",
+        problemSolved: "Used Google Sheets + Apps Script as a lightweight, zero-cost database. Managed user form data efficiently and switched from Zapier to the Resend API for a more scalable, free email automation solution."
       }
     },
   ];
@@ -313,11 +364,28 @@ const TechnicalProwess = () => {
               ✕
             </button>
 
-            {/* Scrollable Content Area */}
-            <div className="overflow-y-auto flex-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              
-              {/* Media Slider (Horizontal Scroll) */}
-              <div className="relative group bg-gray-900 h-[40vh] min-h-[300px]">
+            {/* Fixed Top: Media Slider (Horizontal Scroll) */}
+            <div 
+              className="flex-shrink-0 relative group bg-gray-900 h-[40vh] min-h-[300px]"
+              onMouseEnter={() => setIsHoveringSlider(true)}
+              onMouseLeave={() => setIsHoveringSlider(false)}
+            >
+                {selectedProject.media.length > 1 && (
+                  <>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); scrollSlider(-1); }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); scrollSlider(1); }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                  </>
+                )}
                 <div 
                   ref={sliderRef}
                   className="flex overflow-x-auto snap-x snap-mandatory h-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
@@ -348,8 +416,8 @@ const TechnicalProwess = () => {
                 )}
               </div>
 
-              {/* Content Details */}
-              <div className="p-8 md:p-10">
+              {/* Scrollable Content Details (Vertical Scroll) */}
+              <div className="flex-1 overflow-y-auto p-8 md:p-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <h2 className="text-3xl font-extrabold text-gray-900 mb-2">{selectedProject.title}</h2>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedProject.tech.map(t => (
@@ -404,10 +472,10 @@ const TechnicalProwess = () => {
                     </div>
                   </div>
                 )}
+
               </div>
             </div>
           </div>
-        </div>
       )}
     </section>
   );

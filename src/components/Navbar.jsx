@@ -7,6 +7,7 @@ const Navbar = ({ navigateTo, activeSection }) => {
     { id: 'home', name: 'Home' },
     { id: 'about-me', name: 'About Me' },
     { id: 'technical-prowess', name: 'Technical Prowess' },
+    { id: 'leetcode', name: 'LeetCode' },
     { id: 'creative-corner', name: 'Creative Corner' },
     { id: 'leadership-communication', name: 'Leadership & Communication' },
     { id: 'contact', name: 'Contact' },

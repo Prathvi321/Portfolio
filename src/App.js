@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import TechnicalProwess from './components/TechnicalProwess';
+import LeetCodeProfile from './components/LeetCodeProfile';
 import CreativeCorner from './components/CreativeCorner';
 import LeadershipCommunication from './components/LeadershipCommunication';
 import Contact from './components/Contact';
@@ -20,7 +21,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about-me', 'technical-prowess', 'creative-corner', 'leadership-communication', 'contact'];
+      const sections = ['home', 'about-me', 'technical-prowess', 'leetcode', 'creative-corner', 'leadership-communication', 'contact'];
       let currentActive = 'home';
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -54,6 +55,7 @@ function App() {
               <Home navigateTo={navigateTo} />
               <AboutMe />
               <TechnicalProwess />
+              <LeetCodeProfile />
               <CreativeCorner />
               <LeadershipCommunication />
               <Contact />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Play, Info, ArrowLeft, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ART_SCENES = [
   {
@@ -130,6 +130,7 @@ const ArtScene = ({ scene, onImageClick }) => {
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -167,10 +168,13 @@ export default function Gallery() {
           </div>
         </div>
 
-        <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-900 font-semibold rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all w-fit">
+        <button 
+          onClick={() => navigate(-1)} 
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-900 font-semibold rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all w-fit"
+        >
           <ArrowLeft className="w-5 h-5" />
           Back to Portfolio
-        </Link>
+        </button>
       </header>
 
       {/* Main Gallery List */}
