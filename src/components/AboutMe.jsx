@@ -25,7 +25,7 @@ const AboutMe = () => {
           <div
             className="
               bg-white
-              rounded-[1.rem]
+              rounded-[2rem]
               shadow-[0_15px_50px_rgba(0,0,0,0.08)]
               border border-blue-100
               relative

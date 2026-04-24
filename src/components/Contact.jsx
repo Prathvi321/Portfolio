@@ -160,10 +160,11 @@ const Contact = () => {
           </a>
           <a href="https://leetcode.com/u/Prathvi321/" target="_blank" rel="noopener noreferrer"
             className="group text-gray-700 transition-transform duration-300 transform hover:scale-110">
-            <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
-              <path className="fill-[#FFA116] group-hover:fill-white transition-colors duration-300" d="M16.102 16.225c0 0 2.542-5.006 2.582-5.06a1.156 1.156 0 0 0-.05-1.341c-.03-.04-2.256-2.772-2.256-2.772a1.144 1.144 0 0 0-1.579-.199c-.06.05-4.877 4.093-4.877 4.093a1.156 1.156 0 0 0 .04 1.636c.05.04 4.542 3.824 4.542 3.824a1.144 1.144 0 0 0 1.598-.181z"></path>
-              <path className="fill-current group-hover:fill-[#FFA116] transition-colors duration-300" d="M14.615 16.92l-4.54-3.823a2.31 2.31 0 0 1-.08-3.267l4.877-4.093a2.296 2.296 0 0 1 3.161.399l2.256 2.772c.983 1.25.9 3.037-.1 4.195l-2.583 5.06a2.296 2.296 0 0 1-3.2 1.344l-5.694-2.858a2.31 2.31 0 0 1-.956-3.151l2.583-5.061c.42-.824 1.35-1.157 2.12-.765l5.694 2.858c.84.42 1.182 1.45.762 2.274l-1.291 2.532-3.009-1.509.84-1.649-1.365-.685z"></path>
-            </svg>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png"
+              alt="LeetCode Logo"
+              className="w-12 h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+            />
           </a>
           <a href="https://www.instagram.com/prathvithakur21?igsh=NW9tZGw3ZW9jNnZi" target="_blank"
             rel="noopener noreferrer"
