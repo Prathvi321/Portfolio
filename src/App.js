@@ -7,6 +7,8 @@ import CreativeCorner from './components/CreativeCorner';
 import LeadershipCommunication from './components/LeadershipCommunication';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Gallery from './components/Gallery';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -40,22 +42,29 @@ function App() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 text-gray-900 font-inter antialiased">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 text-gray-900 font-inter antialiased">
 
 
-      <Navbar navigateTo={navigateTo} activeSection={activeSection} />
+            <Navbar navigateTo={navigateTo} activeSection={activeSection} />
 
-      <main className="pt-20">
-        <Home navigateTo={navigateTo} />
-        <AboutMe />
-        <TechnicalProwess />
-        <CreativeCorner />
-        <LeadershipCommunication />
-        <Contact />
-      </main>
+            <main className="pt-20">
+              <Home navigateTo={navigateTo} />
+              <AboutMe />
+              <TechnicalProwess />
+              <CreativeCorner />
+              <LeadershipCommunication />
+              <Contact />
+            </main>
 
-      <Footer />
-    </div>
+            <Footer />
+          </div>
+        } />
+        <Route path="/gallery" element={<Gallery />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

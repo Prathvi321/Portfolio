@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // ----------------------------------------------------------------
 // MOCK DATA - REPLACE 'src' WITH YOUR LOCAL FILE PATHS
@@ -122,40 +123,23 @@ const CreativeCorner = () => {
                 alt="Blender Logo"
                 className="w-16 h-16 md:w-20 md:h-20 object-contain"
               />
-              <div className="text-left">
+              <div className="text-left flex-1">
                 <h3 className="text-3xl font-bold text-gray-900 mb-3">
-                  3D Design and Animations with Blender
+                  3D Design and Animations
                 </h3>
                 <p className="text-lg text-gray-600 max-w-3xl">
                   My passion for design extends into the third dimension. Here are some interactive 3D models
                   and animation renders I have created.
                 </p>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto">
-              {/* Model 1 */}
-              <div className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-                <iframe
-                  title="Desktop Setup"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; fullscreen; xr-spatial-tracking"
-                  src="https://sketchfab.com/models/ff65eda8101d4422a104f530c3f0f8b3/embed"
-                  className="w-full h-full"
-                ></iframe>
-              </div>
-
-              {/* Model 2 */}
-              <div className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-                <iframe
-                  title="Ship In A Jar"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; fullscreen; xr-spatial-tracking"
-                  src="https://sketchfab.com/models/b89cd86d63ca447a832255d677b343f4/embed"
-                  className="w-full h-full"
-                ></iframe>
+              <div className="mt-4 md:mt-0 flex-shrink-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <Link 
+                  to="/gallery" 
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white border-4 border-black text-black font-black text-lg uppercase tracking-wide rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all group"
+                >
+                  View 3D Art Gallery
+                  <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </Link>
               </div>
             </div>
           </div>
