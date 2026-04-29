@@ -24,6 +24,20 @@ const ART_SCENES = [
       '/Art Gallery/Watch render/Still_camera_video_202604241011.mp4',
     ],
     description: 'A complete set of 3D watch model renderings, showcasing smooth rotations, dynamic lighting, floating animations, and various camera angles to highlight the elegant design.'
+  },
+  {
+    id: 'My_Room',
+    title: 'My Room',
+    sketchfabId: '',
+    images: [
+      '/Art Gallery/My Room/ChatGPT Image Apr 1, 2026, 09_35_08 PM.png',
+      '/Art Gallery/My Room/ChatGPT Image Apr 1, 2026, 09_48_41 PM.png',
+      '/Art Gallery/My Room/45492065-b620-45f1-bc0a-8eecc01a93a9.png',
+      '/Art Gallery/My Room/ChatGPT Image Apr 25, 2026, 02_34_08 PM.png',
+      '/Art Gallery/My Room/ChatGPT Image Apr 25, 2026, 02_34_12 PM.png',
+      '/Art Gallery/My Room/Screenshot from 2026-04-25 14-30-29.png'
+    ],
+    description: 'My room, my sanctuary. This 3D recreation captures the cozy corner where I spend hours coding, learning, and designing. Every element, from the desk setup to the lighting, is modeled and rendered with care to reflect my personal space and creative energy.'
   }
 ];
 
@@ -168,8 +182,8 @@ export default function Gallery() {
           </div>
         </div>
 
-        <button 
-          onClick={() => navigate(-1)} 
+        <button
+          onClick={() => navigate(-1)}
           className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-900 font-semibold rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all w-fit"
         >
           <ArrowLeft className="w-5 h-5" />
