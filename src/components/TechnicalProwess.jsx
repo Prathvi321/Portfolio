@@ -232,6 +232,27 @@ const TechnicalProwess = () => {
         vision: "To transform traditional, text-heavy reading into an immersive, living digital magazine that makes community-driven storytelling visually captivating.",
         problemSolved: "Solved the problem of rigid, uninspired blog templates by combining zero-cost open-source hosting with a deeply expressive, motion-first user experience."
       }
+    },
+    {
+      id: 9,
+      title: "Raspberry Pi Distance Measurement System",
+      category: "IoT & Embedded Systems",
+      tech: ["Python", "Raspberry Pi 4", "GPIO", "I2C", "Hardware"],
+      description: "A hardware-software integration project measuring physical distance using an ultrasonic sensor and laser alignment.",
+      github: null,
+      demo: null,
+      media: [
+        { type: "image", url: "/Projects/Raspberry pi distance measuring project/raspberrypi__iot__embeddedsystems__python__hardwa.jpg" },
+        { type: "image", url: "/Projects/Raspberry pi distance measuring project/raspberrypi__iot__embeddedsystems__python__hardwa (1).jpg" },
+        { type: "image", url: "/Projects/Raspberry pi distance measuring project/raspberrypi__iot__embeddedsystems__python__hardwa (2).jpg" },
+        { type: "image", url: "/Projects/Raspberry pi distance measuring project/raspberrypi__iot__embeddedsystems__python__hardwa (3).jpg" }
+      ],
+      details: {
+        whatIDid: "Built a physical distance measurement system integrating a Raspberry Pi 4 with an ultrasonic sensor, laser alignment module, and an LCD screen.",
+        approach: "Utilized Python and GPIO control for low-level sensor communication, implemented timing-based algorithms for distance calculation, and used I2C for efficient display integration.",
+        vision: "To bridge the gap between abstract software and the physical world, exploring how code interacts with hardware in real time to lay a foundation for advanced AI, automation, and robotics.",
+        problemSolved: "Overcame real-world hardware challenges by implementing software-level filtering to stabilize noisy sensor readings and structured the codebase into reusable modules to handle multi-component debugging."
+      }
     }
   ];
 
