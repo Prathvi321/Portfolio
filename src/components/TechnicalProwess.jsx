@@ -168,6 +168,49 @@ const TechnicalProwess = () => {
         problemSolved: "AI can generate code, but it doesn't always work correctly. This project tackled the gap between AI-generated output and production-ready software by debugging, refactoring, and building robust error handling around multiple API integrations."
       }
     },
+    {
+      id: 6,
+      title: "DriftGuard",
+      category: "Machine Learning (MLOps)",
+      tech: ["Python", "Pandas", "SciPy", "MLOps", "Pytest"],
+      description: "Automated data validation and drift detection framework for machine learning pipelines.",
+      github: "https://github.com/Prathvi321/drift-guard",
+      demo: "https://pypi.org/project/driftguard-prathvi/",
+      media: [
+        { type: "image", url: "/Projects/Drift guard/image.png" },
+        { type: "image", url: "/Projects/Drift guard/Screenshot from 2026-06-11 20-20-57.png" },
+        { type: "image", url: "/Projects/Drift guard/Screenshot from 2026-06-11 20-21-01.png" },
+        { type: "image", url: "/Projects/Drift guard/Screenshot from 2026-06-11 20-21-06.png" }
+      ],
+      details: {
+        whatIDid: "Built DriftGuard, an open-source Python library for automated data validation and drift detection in machine learning pipelines. The framework compares production datasets against reference training data and identifies schema inconsistencies, missing-value spikes, and statistical distribution shifts.",
+        approach: "Designed a modular architecture using Python, Pandas, and SciPy to perform schema validation, null-value analysis, and drift detection through statistical tests such as Kolmogorov-Smirnov and Chi-Square. Implemented a simple developer-friendly API, comprehensive testing, and automated reporting to ensure easy integration into MLOps workflows.",
+        vision: "To make production-grade data quality monitoring accessible to students, developers, and organizations by providing a lightweight, open-source alternative to complex and expensive data observability platforms. The goal is to help teams detect data issues before they negatively impact machine learning model performance.",
+        problemSolved: "Solved the challenge of unnoticed data quality degradation in machine learning systems by automatically detecting schema changes, missing data anomalies, and distribution drift. DriftGuard enables proactive monitoring, reducing debugging effort and improving the reliability and trustworthiness of deployed ML models."
+      }
+    },
+    {
+      id: 7,
+      title: "Sagar Sync",
+      category: "Web Development",
+      tech: ["React", "Tailwind CSS", "Vite", "Netlify Functions", "Gemini API"],
+      description: "A premium digital agency platform offering full-stack web solutions and automation services.",
+      github: "https://github.com/sagarsync/Sagarsync",
+      demo: "https://sagarsync.netlify.app/",
+      media: [
+        { type: "image", url: "/Projects/Sagar Sync/webdevelopment__fullstackdevelopment__automation_.jpg" },
+        { type: "image", url: "/Projects/Sagar Sync/webdevelopment__fullstackdevelopment__automation_ (1).jpg" },
+        { type: "image", url: "/Projects/Sagar Sync/webdevelopment__fullstackdevelopment__automation_ (2).jpg" },
+        { type: "image", url: "/Projects/Sagar Sync/webdevelopment__fullstackdevelopment__automation_ (3).jpg" },
+        { type: "image", url: "/Projects/Sagar Sync/webdevelopment__fullstackdevelopment__automation_ (4).jpg" }
+      ],
+      details: {
+        whatIDid: "Built a fully functional, premium business landing page with service catalogs, multi-tiered pricing frameworks, and distinct interactive team portfolios.",
+        approach: "Utilized a responsive, scannable tab-based navigation architecture combined with custom micro-card grid structures to present high-density business metrics cleanly.",
+        vision: "To democratize digital transformation for regional enterprises by providing an aggressive, highly confident, and completely accessible 'ultimate fixer' tech agency model.",
+        problemSolved: "Solved the problem of tech-execution paralysis for local coaching institutes, shops, and clinics by consolidating web development, media production, branding, and local map optimization under a single, reliable point of contact."
+      }
+    }
   ];
 
   const certifications = [
