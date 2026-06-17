@@ -210,6 +210,28 @@ const TechnicalProwess = () => {
         vision: "To democratize digital transformation for regional enterprises by providing an aggressive, highly confident, and completely accessible 'ultimate fixer' tech agency model.",
         problemSolved: "Solved the problem of tech-execution paralysis for local coaching institutes, shops, and clinics by consolidating web development, media production, branding, and local map optimization under a single, reliable point of contact."
       }
+    },
+    {
+      id: 8,
+      title: "Byte & Build Blog",
+      category: "Web Development",
+      tech: ["Astro", "Tailwind CSS", "Anime.js", "JavaScript"],
+      description: "A customizable editorial blogging platform featuring interactive reading tools and fluid animations.",
+      github: "https://github.com/Prathvi321/Blog",
+      demo: "https://blog-theta-smoky-20.vercel.app",
+      media: [
+        { type: "image", url: "/Projects/Blog website/nextjs__webdevelopment__frontenddevelopment__full.jpg" },
+        { type: "image", url: "/Projects/Blog website/nextjs__webdevelopment__frontenddevelopment__full (1).jpg" },
+        { type: "image", url: "/Projects/Blog website/nextjs__webdevelopment__frontenddevelopment__full (2).jpg" },
+        { type: "image", url: "/Projects/Blog website/nextjs__webdevelopment__frontenddevelopment__full (3).jpg" },
+        { type: "image", url: "/Projects/Blog website/nextjs__webdevelopment__frontenddevelopment__full (4).jpg" }
+      ],
+      details: {
+        whatIDid: "Built a fully customizable, end-to-end blogging platform frontend featuring an interactive editorial reader, multi-author dashboard, and fluid page transitions.",
+        approach: "Utilized Astro for a lightweight, content-focused architecture and integrated Anime.js to create robust, high-performance scroll animations and kinetic typography.",
+        vision: "To transform traditional, text-heavy reading into an immersive, living digital magazine that makes community-driven storytelling visually captivating.",
+        problemSolved: "Solved the problem of rigid, uninspired blog templates by combining zero-cost open-source hosting with a deeply expressive, motion-first user experience."
+      }
     }
   ];
 
